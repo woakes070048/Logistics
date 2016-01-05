@@ -1,6 +1,4 @@
-/// <reference path="../typings/node/node.d.ts" />
-/// <reference path="../typings/express/express.d.ts" />
-/// <reference path="../typings/jsonwebtoken/jsonwebtoken.d.ts" />
+/// <reference path="../typings/tsd.d.ts" />
 
 import express = require('express');
 import jwt = require('jsonwebtoken');
@@ -22,7 +20,7 @@ export class Routes {
         
     }
     
-    loginCallback = (err, data) => {
+    loginCallback = (err: any, data: any) => {
         if(err) {
             this.res.send({ success: false });
         } else {

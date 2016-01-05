@@ -1,3 +1,5 @@
+/// <reference path="../typings/tsd.d.ts" />
+
 export class Auth {
     public username: string;
     public password: string;
@@ -6,7 +8,7 @@ export class Auth {
 
     }
     
-    public login(username, password, callback) {
+    public login(username: string, password: string, callback: any) {
         callback(null, {username: username});
     }
 }

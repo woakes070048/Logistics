@@ -1,6 +1,4 @@
-/// <reference path="./typings/node/node.d.ts" />
-/// <reference path="./typings/body-parser/body-parser.d.ts" />
-/// <reference path="./typings/method-override/method-override.d.ts" />
+/// <reference path="./typings/tsd.d.ts" />
 
 import express = require('express');
 var app = express();
