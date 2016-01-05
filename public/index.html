@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Logistics</title>
+	<!-- 1. Load libraries -->
+    <link href="styles.css" rel="stylesheet" />
+    
+    <script src="vendor.js"></script>
+    
+    <!-- 2. Configure SystemJS -->
+    <script>
+      
+      System.config({
+        packages: {        
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/app')
+            .then(null, console.error.bind(console));
+    </script>
+    
+    
+</head>
+<body>
+  <body>
+    <!-- 3. Display the application -->
+    <app>Loading...</app>
+  </body>
+</body>
+</html>
