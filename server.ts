@@ -8,6 +8,7 @@ import methodOverride = require('method-override');
 
 import routes = require('./app/routes');
 import auth = require('./app/auth');
+import db = require('./app/db');
 
 var port = process.env.PORT || 3000;
 
@@ -22,13 +23,10 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 // routes ==================================================
 var _auth = new auth.Auth;
 var Routes = new routes.Routes();
+var _db = new db();
 app.post('/api/v1/Token', Routes.Token);
 app.get('/api/v1/GetEmployees', function(req, res){
-    res.send([
-        { firstname: 'first', lastname: 'last', employeeID: 1},
-        { firstname: 'first', lastname: 'last', employeeID: 2},
-        { firstname: 'first', lastname: 'last', employeeID: 3}
-    ]);
+    req.send(db.getAllEmployees());
 });
 
 // start app ===============================================

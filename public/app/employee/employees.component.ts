@@ -17,13 +17,11 @@ export class EmployeesComponent implements OnInit {
         
     }
     
-    getEmployees()  {
+    getEmployees()  { 
         this.http.get(STATIC.getEmployeesPath)
-            //.map(res => res.json())
-            .subscribe(
-                data => this.GetEmployeesCallback(data),
-                err => {console.log(err);},
-                () => {console.log('done');}
+            .subscribe(  
+                data => { this.GetEmployeesCallback(data) },
+                err => {return err }
             );
     }
     
@@ -31,7 +29,7 @@ export class EmployeesComponent implements OnInit {
         this.getEmployees();
     }
     
-    GetEmployeesCallback(res) {
+    GetEmployeesCallback(res: any) {
         this.employeeList = JSON.parse(res._body);
         console.log(this.employeeList);
     }

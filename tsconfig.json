@@ -1,11 +1,8 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": false,
-    "module": "commonjs",
     "target": "es5",
+    "module": "amd",
+    "sourceMap": true,
     "experimentalDecorators": true
   },
   "exclude": [

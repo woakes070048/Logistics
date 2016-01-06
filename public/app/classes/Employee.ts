@@ -5,21 +5,22 @@ import {STATIC} from '../classes/STATIC';
 import {IEmployee} from '../interfaces/IEmployee';
 
 export class Employee {
+    
     constructor(@Inject(Http) private http: Http) {}
     
-    list = (): Array<IEmployee> => {
-        // this.http.get(STATIC.getEmployeesPath)
-        //     .subscribe(
-        //         data => {return data },
-        //         err => {return err }
-        //     );
+    list = (): any => {
+        this.http.get(STATIC.getEmployeesPath)
+            .subscribe(
+                data => { this.DataCallback },
+                err => {return err }
+            );
     }
     
-    DataCallback = (data) => {
+    DataCallback = (data: any) => {
         
     }
     
-    ErrCallback = (err) => {
+    ErrCallback = (err: any) => {
         
     }
     

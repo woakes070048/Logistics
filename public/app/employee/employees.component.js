@@ -29,7 +29,7 @@ System.register(['angular2/core', 'angular2/http', '../classes/Static'], functio
                 EmployeesComponent.prototype.getEmployees = function () {
                     var _this = this;
                     this.http.get(Static_1.STATIC.getEmployeesPath)
-                        .subscribe(function (data) { return _this.GetEmployeesCallback(data); }, function (err) { console.log(err); }, function () { console.log('done'); });
+                        .subscribe(function (data) { _this.GetEmployeesCallback(data); }, function (err) { return err; });
                 };
                 EmployeesComponent.prototype.ngOnInit = function () {
                     this.getEmployees();

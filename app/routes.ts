@@ -11,12 +11,14 @@ export class Routes {
     constructor() {
     }
     
+    
     Token = (req: express.Request, res: express.Response) => {
         this.req = req;
         this.res = res;
         var auth = Auth.Auth;
         
         auth.prototype.login(req.body.username, req.body.password, this.loginCallback);
+        
         
     }
     

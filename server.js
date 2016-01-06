@@ -14,11 +14,6 @@ var _auth = new auth.Auth;
 var Routes = new routes.Routes();
 app.post('/api/v1/Token', Routes.Token);
 app.get('/api/v1/GetEmployees', function (req, res) {
-    res.send([
-        { firstname: 'first', lastname: 'last', employeeID: 1 },
-        { firstname: 'first', lastname: 'last', employeeID: 2 },
-        { firstname: 'first', lastname: 'last', employeeID: 3 }
-    ]);
 });
 app.listen(port);
 console.log('Magic happens on port ' + port);

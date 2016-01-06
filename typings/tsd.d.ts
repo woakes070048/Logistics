@@ -5,3 +5,4 @@
 /// <reference path="serve-static/serve-static.d.ts" />
 /// <reference path="body-parser/body-parser.d.ts" />
 /// <reference path="method-override/method-override.d.ts" />
+/// <reference path="mongodb/mongodb.d.ts" />

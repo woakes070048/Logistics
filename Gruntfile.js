@@ -2,19 +2,23 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         watch: {
-            ts: {
-                files: ['public/app/**/*.ts', 'app/**/*.ts'],
-                tasks: ['ts'],
+            ts_front: {
+                files: ['public/app/**/*.ts'],
+                tasks: ['ts:front_end'],
                 options: {
                     livereload: true
                 }
+            },
+            ts_back: {
+                files: ['**/*.ts', '!public/app/**/*.ts'],
+                tasks: ['ts:back_end']
             }
         },
 
         nodemon: {
             dev: {
                 script: 'server.js',
-                ignore: ['node_modules/**/*.*', 'bower_components/**/*.*', 'public/app/**/*.*']
+                ignore: ['node_modules/**/*.*', 'bower_components/**/*.*', 'public/**/*.*']
             }
         },
 
@@ -33,7 +37,7 @@ module.exports = function (grunt) {
                     experimentalDecorators: true,
                     moduleResolution: "node"
                 },
-                src: ['server.ts','app/**/*.ts']
+                src: ['server.ts','app/**/*.ts', "!node_modules/**/*.ts"]
             }
         },
 
@@ -70,7 +74,7 @@ module.exports = function (grunt) {
         
         concurrent: {
             target: {
-                tasks: ['nodemon', 'ts']
+                tasks: ['nodemon', 'watch']
             },
             options: {
                 logConcurrentOutput: true
@@ -88,8 +92,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-concat-css');
 
     grunt.registerTask('build', ['concat', 'concat_css'])
-    grunt.registerTask('compile', ['ts']);
-    grunt.registerTask('default', ['build', 'compile', 'nodemon']);
+    grunt.registerTask('default', ['build', 'ts', 'concurrent']);
 
 
 

@@ -10,5 +10,5 @@ export class Auth {
     
     public login(username: string, password: string, callback: any) {
         callback(null, {username: username});
-    }
-}
+    }  
+} 

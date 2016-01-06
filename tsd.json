@@ -6,7 +6,7 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "jsonwebtoken/jsonwebtoken.d.ts": {
       "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
@@ -25,6 +25,9 @@
     },
     "method-override/method-override.d.ts": {
       "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+    },
+    "mongodb/mongodb.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     }
   }
 }
