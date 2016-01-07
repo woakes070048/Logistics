@@ -1,12 +1,24 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "amd",
-    "sourceMap": true,
-    "experimentalDecorators": true
-  },
-  "exclude": [
-    "./bower_components",
-    "./node_modules"
-  ]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "classic",
+        "sourceMap": true,
+        "experimentalDecorators": true
+    },
+    "files": [
+        "core.ts",
+        "sys.ts",
+        "types.ts",
+        "scanner.ts",
+        "parser.ts",
+        "utilities.ts",
+        "binder.ts",
+        "checker.ts",
+        "emitter.ts",
+        "program.ts",
+        "commandLineParser.ts",
+        "tsc.ts",
+        "diagnosticInformationMap.generated.ts"
+    ]
 }

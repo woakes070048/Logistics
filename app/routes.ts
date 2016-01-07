@@ -8,9 +8,7 @@ export class Routes {
     private req: express.Request;
     private res: express.Response;
     
-    constructor() {
-    }
-    
+    constructor() {}
     
     Token = (req: express.Request, res: express.Response) => {
         this.req = req;
