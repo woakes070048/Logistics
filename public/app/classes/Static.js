@@ -5,7 +5,8 @@ System.register([], function(exports_1) {
         execute: function() {
             exports_1("STATIC", STATIC = {
                 loginPath: '/api/v1/Token',
-                getEmployeesPath: '/api/v1/GetEmployees'
+                getEmployeesPath: '/api/v1/Employees',
+                getEmployeePath: '/api/v1/Employee'
             });
         }
     }

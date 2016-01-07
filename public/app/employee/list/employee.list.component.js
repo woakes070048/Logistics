@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', '../classes/Static'], function(exports_1) {
+System.register(['angular2/core', 'angular2/http', '../../classes/Employee'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +8,8 @@ System.register(['angular2/core', 'angular2/http', '../classes/Static'], functio
     var __param = (this && this.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
-    var core_1, http_1, Static_1;
-    var EmployeesComponent;
+    var core_1, http_1, Employee_1;
+    var EmployeeListComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -18,38 +18,30 @@ System.register(['angular2/core', 'angular2/http', '../classes/Static'], functio
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (Static_1_1) {
-                Static_1 = Static_1_1;
+            function (Employee_1_1) {
+                Employee_1 = Employee_1_1;
             }],
         execute: function() {
-            EmployeesComponent = (function () {
-                function EmployeesComponent(http) {
+            EmployeeListComponent = (function () {
+                function EmployeeListComponent(http) {
                     this.http = http;
                 }
-                EmployeesComponent.prototype.getEmployees = function () {
+                EmployeeListComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this.http.get(Static_1.STATIC.getEmployeesPath)
-                        .subscribe(function (data) { _this.GetEmployeesCallback(data); }, function (err) { return err; });
+                    new Employee_1.Employee(this.http).list().subscribe(function (data) { return _this.employeeList = data.json(); });
                 };
-                EmployeesComponent.prototype.ngOnInit = function () {
-                    this.getEmployees();
-                };
-                EmployeesComponent.prototype.GetEmployeesCallback = function (res) {
-                    this.employeeList = JSON.parse(res._body);
-                    console.log(this.employeeList);
-                };
-                EmployeesComponent = __decorate([
+                EmployeeListComponent = __decorate([
                     core_1.Component({
                         selector: 'employees-component',
                         directives: [],
-                        templateUrl: './app/employee/employees.component.html'
+                        templateUrl: './app/employee/list/employee.list.component.html'
                     }),
                     __param(0, core_1.Inject(http_1.Http))
-                ], EmployeesComponent);
-                return EmployeesComponent;
+                ], EmployeeListComponent);
+                return EmployeeListComponent;
             })();
-            exports_1("EmployeesComponent", EmployeesComponent);
+            exports_1("EmployeeListComponent", EmployeeListComponent);
         }
     }
 });
-//# sourceMappingURL=employees.component.js.map
+//# sourceMappingURL=employee.list.component.js.map

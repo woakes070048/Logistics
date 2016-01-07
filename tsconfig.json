@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "classic",
         "sourceMap": true,
-        "experimentalDecorators": true
+        "noLibCheck": true
     },
     "files": [
         "core.ts",
@@ -19,6 +21,9 @@
         "program.ts",
         "commandLineParser.ts",
         "tsc.ts",
-        "diagnosticInformationMap.generated.ts"
+        "diagnosticInformationMap.generated.ts",
+        "node_modules/angular2/ts/core.d.ts",
+        "node_modules/angular2/ts/http.d.ts",
+        "typings/angular2/angular2.d.ts"
     ]
 }

@@ -1,4 +1,5 @@
-import {Inject, Injectable} from 'angular2/core'
+
+import {Injectable, Inject} from 'angular2/core'
 import {Http, Headers} from 'angular2/http';
 import {UserCreds} from '../classes/UserCreds';
 import {STATIC} from '../classes/Static';

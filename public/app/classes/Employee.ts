@@ -6,22 +6,18 @@ import {IEmployee} from '../interfaces/IEmployee';
 
 export class Employee {
     
-    constructor(@Inject(Http) private http: Http) {}
+    constructor(private http: Http, private employeeID?: number) { }
     
     list = (): any => {
-        this.http.get(STATIC.getEmployeesPath)
-            .subscribe(
-                data => { this.DataCallback },
-                err => {return err }
-            );
+        return this.http.get(STATIC.getEmployeesPath);
     }
     
-    DataCallback = (data: any) => {
-        
+    get = () => {
+        return this.http.get('/api/v1/Employee/' + this.employeeID);
     }
     
-    ErrCallback = (err: any) => {
-        
+    update = (e: IEmployee) => {
+        return this.http.post('/api/v1/Employee/' + this.employeeID + '/Update', null, { employee: e});
     }
     
 }

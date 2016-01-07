@@ -28,6 +28,18 @@
     },
     "mongodb/mongodb.d.ts": {
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "rx/rx.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "angular2/angular2.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     }
   }
 }

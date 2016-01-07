@@ -27,11 +27,22 @@ let Routes = new routes.Routes();
 let employee = new employeeModel.EmployeeModel();
 
 app.post('/api/v1/Token', Routes.Token);
-app.get('/api/v1/GetEmployees', function(req: express.Request, res: express.Response){
+app.get('/api/v1/Employees', (req: express.Request, res: express.Response) => {
     employee.All((err: Error, data: mongodb.Collection[]) => {
         if(err) { res.send({err: err}); }
         res.send(data);
     });
+});
+app.get('/api/v1/Employee/:employeeID', (req: express.Request, res: express.Response) => {
+    let employeeID = parseInt(req.params.employeeID);
+    if(!isNaN(employeeID)) {
+        employee.Get(employeeID, (err: Error, data: mongodb.Collection) => {
+            if(err) { res.send({err: err}); }
+            res.send(data);
+        });
+    } else {
+        res.send({err: new Error('employeeID must be a number')});
+    }
 });
 
 // start app ===============================================

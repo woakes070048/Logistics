@@ -13,13 +13,27 @@ app.use(express.static(__dirname + '/public'));
 var Routes = new routes.Routes();
 var employee = new employeeModel.EmployeeModel();
 app.post('/api/v1/Token', Routes.Token);
-app.get('/api/v1/GetEmployees', function (req, res) {
+app.get('/api/v1/Employees', function (req, res) {
     employee.All(function (err, data) {
         if (err) {
             res.send({ err: err });
         }
         res.send(data);
     });
+});
+app.get('/api/v1/Employee/:employeeID', function (req, res) {
+    var employeeID = parseInt(req.params.employeeID);
+    if (!isNaN(employeeID)) {
+        employee.Get(employeeID, function (err, data) {
+            if (err) {
+                res.send({ err: err });
+            }
+            res.send(data);
+        });
+    }
+    else {
+        res.send({ err: new Error('employeeID must be a number') });
+    }
 });
 app.listen(port);
 console.log('Magic happens on port ' + port);

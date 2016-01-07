@@ -7,7 +7,8 @@ import {RouteConfig,  ROUTER_DIRECTIVES, ROUTER_PROVIDERS,
 import {LoginComponent} from './login/login.component';
 import {aboutComponent} from './about/about.component';
 import {defaultComponent} from './default/default.component';
-import {EmployeesComponent} from './employee/employees.component';
+import {EmployeeListComponent} from './employee/list/employee.list.component';
+import {EmployeeUpdateComponent} from './employee/update/employee.update.component';
 
 @Component({
     selector: 'app',
@@ -23,7 +24,8 @@ import {EmployeesComponent} from './employee/employees.component';
     { path: '/Login', component: LoginComponent, as: 'Login'},
     { path: '/', component: defaultComponent, as: 'Home'},
     { path: '/About', component: aboutComponent, as: 'About' },
-    { path: '/Employees', component: EmployeesComponent, as: 'Employees'}
+    { path: '/Employees', component: EmployeeListComponent, as: 'Employees'},
+    { path: '/Employee/:employeeID/Update', component: EmployeeUpdateComponent , as: 'Update Employee'}
 ])
 
 export class boot {}
