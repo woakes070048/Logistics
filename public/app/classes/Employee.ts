@@ -1,5 +1,5 @@
 import {Inject} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {Http, Headers, Response} from 'angular2/http';
 
 import {STATIC} from '../classes/STATIC';
 import {IEmployee} from '../interfaces/IEmployee';
@@ -17,7 +17,12 @@ export class Employee {
     }
     
     update = (e: IEmployee) => {
-        return this.http.post('/api/v1/Employee/' + this.employeeID + '/Update', null, { employee: e});
+        
+        let body = '_id=' + e._id + '&firstname=' + e.firstname + '&lastname=' + e.lastname + '&employeeID=' + e.employeeID;
+        let headers = new Headers();
+            headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.post('/api/v1/Employee/' + this.employeeID + '/Update', body, { headers: headers });
     }
     
 }

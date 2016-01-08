@@ -1,0 +1,1 @@
+"/Users/jasonphillips/Documents/dev/Logistics/server.ts" "/Users/jasonphillips/Documents/dev/Logistics/app/Auth.ts" "/Users/jasonphillips/Documents/dev/Logistics/app/EmployeeModel.ts" "/Users/jasonphillips/Documents/dev/Logistics/app/Routes.ts" --sourcemap --removeComments --experimentalDecorators --moduleResolution node --target ES5 --module commonjs

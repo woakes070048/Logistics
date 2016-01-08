@@ -44,6 +44,18 @@ app.get('/api/v1/Employee/:employeeID', (req: express.Request, res: express.Resp
         res.send({err: new Error('employeeID must be a number')});
     }
 });
+app.post('/api/v1/Employee/:employeeID/Update', (req: express.Request, res: express.Response) => {
+    let employeeID = parseInt(req.params.employeeID);
+    if(!isNaN(employeeID)) {
+        employee.Update(employeeID, req.body, (err: Error, success: boolean) => {
+            if(err) res.send({err: err});
+            res.send({success: success}); //might want to send back the document
+        });
+    } else {
+        res.send({err: new Error('employeeID must be a number')});
+    }
+    
+})
 
 // start app ===============================================
 

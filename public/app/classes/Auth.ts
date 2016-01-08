@@ -18,7 +18,6 @@ export class Auth {
                 password = userCreds.password;
             let creds = 'username=' + username + '&password=' + password;
             let headers = new Headers();
-            
             headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
             this.http.post(STATIC.loginPath, creds, { headers: headers })

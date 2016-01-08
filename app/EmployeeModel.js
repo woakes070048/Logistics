@@ -39,6 +39,20 @@ var EmployeeModel = (function () {
                 });
             });
         };
+        this.Update = function (employeeID, employee, callback) {
+            _this.client.collection('employees', function (error, doc) {
+                if (error) {
+                    _this.LogError(error);
+                    callback(error);
+                }
+                doc.update(employee, function (err, result) {
+                    console.log(err, result);
+                    if (err)
+                        callback(err);
+                    callback(null, true);
+                });
+            });
+        };
         this.LogError = function (err) {
             console.log(err);
         };

@@ -35,6 +35,19 @@ app.get('/api/v1/Employee/:employeeID', function (req, res) {
         res.send({ err: new Error('employeeID must be a number') });
     }
 });
+app.post('/api/v1/Employee/:employeeID/Update', function (req, res) {
+    var employeeID = parseInt(req.params.employeeID);
+    if (!isNaN(employeeID)) {
+        employee.Update(employeeID, req.body, function (err, success) {
+            if (err)
+                res.send({ err: err });
+            res.send({ success: success });
+        });
+    }
+    else {
+        res.send({ err: new Error('employeeID must be a number') });
+    }
+});
 app.listen(port);
 console.log('Magic happens on port ' + port);
 exports = module.exports = app;

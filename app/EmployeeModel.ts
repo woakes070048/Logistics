@@ -48,6 +48,23 @@ export class EmployeeModel {
         });
     }
     
+    public Update = (employeeID: number, employee: any, callback: (err?: Error, success?: boolean) => void) => {
+        this.client.collection('employees', (error: Error, doc: mongodb.Collection) => {
+           if(error) {
+               this.LogError(error);
+               callback(error);
+            } 
+            
+            //is saving new doc because _id: string not mongodb.onjectId
+            doc.update(employee, (err: Error, result) => {
+                console.log(err, result);
+                if(err) callback(err);
+                callback(null, true);
+            });
+            
+        });
+    }
+    
     private LogError = (err: Error) => {
         console.log(err);
     }

@@ -20,10 +20,25 @@ export class EmployeeUpdateComponent implements OnInit {
     private employeeID: number;
     private employeeService: Employee;
 
-    constructor( @Inject(Http) private http: Http, @Inject(RouteParams) private params: RouteParams) { }
+    constructor( @Inject(Http) private http: Http, @Inject(RouteParams) private params: RouteParams) { 
+        this.employee = {
+            _id: '',
+            firstname: '',
+            lastname: '',
+            employeeID: 0
+        }
+    }
 
     updateEmployee = (e: IEmployee) => {
         this.employeeService.update(e).subscribe((data) => this.employeeUpdateCallback(data));
+    }
+    
+    save = (e: IEmployee) => {
+        this.employeeService.update(e).subscribe((data) => { this.updateEmployeeCallback(data) });
+    }
+
+    updateEmployeeCallback = (data) => {
+        console.log(data);
     }
 
     employeeUpdateCallback = (data) => {

@@ -33,9 +33,21 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.updateEmployee = function (e) {
                         _this.employeeService.update(e).subscribe(function (data) { return _this.employeeUpdateCallback(data); });
                     };
+                    this.save = function (e) {
+                        _this.employeeService.update(e).subscribe(function (data) { _this.updateEmployeeCallback(data); });
+                    };
+                    this.updateEmployeeCallback = function (data) {
+                        console.log(data);
+                    };
                     this.employeeUpdateCallback = function (data) {
                         if (data.success) {
                         }
+                    };
+                    this.employee = {
+                        _id: '',
+                        firstname: '',
+                        lastname: '',
+                        employeeID: 0
                     };
                 }
                 EmployeeUpdateComponent.prototype.ngOnInit = function () {
