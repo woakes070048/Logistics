@@ -44,7 +44,7 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
                     core_1.Component({
                         selector: 'app',
                         directives: [router_1.ROUTER_DIRECTIVES],
-                        template: "\n        <a [routerLink]=\"['/Home']\">Home</a>\n        <a [routerLink]=\"['/About']\">About</a>\n        <router-outlet></router-outlet>\n    "
+                        template: "\n        <a [routerLink]=\"['/Home']\">Home</a>\n        <a [routerLink]=\"['/About']\">About</a>\n        <a [routerLink]=\"['/Employees']\">Employee List</a>\n        <router-outlet></router-outlet>\n    "
                     }),
                     router_1.RouteConfig([
                         { path: '/Login', component: login_component_1.LoginComponent, as: 'Login' },

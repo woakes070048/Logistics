@@ -55,9 +55,11 @@ export class EmployeeModel {
                callback(error);
             } 
             
-            //is saving new doc because _id: string not mongodb.onjectId
-            doc.update(employee, (err: Error, result) => {
-                console.log(err, result);
+            let updateEmployee = employee;
+            updateEmployee._id = new mongodb.ObjectID(employee._id);
+            updateEmployee.employeeID = parseInt(employee.employeeID);
+            
+            doc.save(updateEmployee, (err: Error, result) => {
                 if(err) callback(err);
                 callback(null, true);
             });

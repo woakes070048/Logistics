@@ -16,6 +16,7 @@ import {EmployeeUpdateComponent} from './employee/update/employee.update.compone
     template: `
         <a [routerLink]="['/Home']">Home</a>
         <a [routerLink]="['/About']">About</a>
+        <a [routerLink]="['/Employees']">Employee List</a>
         <router-outlet></router-outlet>
     ` 
 })

@@ -1,5 +1,5 @@
 <ul>
     <li *ngFor="#employee of employeeList">
-        {{employee.firstname}} {{employee.lastname}} {{employee.employeeID}}
+        {{employee.firstname}} {{employee.lastname}} {{employee.employeeID}} <a href="#/Employee/{{employee.employeeID}}/Update">Update</a>
     </li> 
 </ul>

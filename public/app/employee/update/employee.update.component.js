@@ -26,22 +26,23 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
             }],
         execute: function() {
             EmployeeUpdateComponent = (function () {
-                function EmployeeUpdateComponent(http, params) {
+                function EmployeeUpdateComponent(http, params, location, router) {
                     var _this = this;
                     this.http = http;
                     this.params = params;
-                    this.updateEmployee = function (e) {
-                        _this.employeeService.update(e).subscribe(function (data) { return _this.employeeUpdateCallback(data); });
-                    };
+                    this.location = location;
+                    this.router = router;
                     this.save = function (e) {
-                        _this.employeeService.update(e).subscribe(function (data) { _this.updateEmployeeCallback(data); });
+                        _this.employeeService.update(e)
+                            .subscribe(function (data) { return _this.updateEmployeeCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
                     };
                     this.updateEmployeeCallback = function (data) {
-                        console.log(data);
-                    };
-                    this.employeeUpdateCallback = function (data) {
                         if (data.success) {
+                            _this.router.parent.navigate(['/Employees']);
                         }
+                    };
+                    this.errorCallback = function (err) {
+                        console.log(err);
                     };
                     this.employee = {
                         _id: '',
@@ -62,12 +63,14 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                 EmployeeUpdateComponent = __decorate([
                     core_1.Component({
                         selector: 'update-employee',
-                        directives: [],
+                        directives: [router_1.ROUTER_DIRECTIVES],
                         inputs: ['employeeID'],
                         templateUrl: './app/employee/update/employee.update.component.html'
                     }),
                     __param(0, core_1.Inject(http_1.Http)),
-                    __param(1, core_1.Inject(router_1.RouteParams))
+                    __param(1, core_1.Inject(router_1.RouteParams)),
+                    __param(2, core_1.Inject(router_1.Location)),
+                    __param(3, core_1.Inject(router_1.Router))
                 ], EmployeeUpdateComponent);
                 return EmployeeUpdateComponent;
             })();
