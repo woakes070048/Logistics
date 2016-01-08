@@ -294,7 +294,7 @@ declare module "mongodb" {
   }
 
   // Documentation : http://mongodb.github.io/node-mongodb-native/api-generated/collection.html
-    export interface Collection {
+  export interface Collection {
     new (db: Db, collectionName: string, pkFactory?: Object, options?: CollectionCreateOptions): Collection; // is this right?
 
     insert(query: any, callback: (err: Error, result: any) => void): void;

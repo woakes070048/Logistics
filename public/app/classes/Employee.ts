@@ -16,13 +16,27 @@ export class Employee {
         return this.http.get('/api/v1/Employee/' + this.employeeID);
     }
     
+    create = (e: IEmployee) => {
+        let body = 'firstname=' + e.firstname + '&lastname=' + e.lastname + '&employeeID=' + e.employeeID;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        
+        return this.http.post('/api/v1/Employee',  body, { headers: headers });
+    }
+    
     update = (e: IEmployee) => {
         
         let body = '_id=' + e._id + '&firstname=' + e.firstname + '&lastname=' + e.lastname + '&employeeID=' + e.employeeID;
         let headers = new Headers();
-            headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('/api/v1/Employee/' + this.employeeID + '/Update', body, { headers: headers });
+        return this.http.post('/api/v1/Employee' + this.employeeID + '/Update', body, { headers: headers });
     }
     
+    delete = (id: string) => {
+        let body = '_id=' + id;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http.post('/api/v1/Employee/Delete', body, {headers: headers});
+    }
 }

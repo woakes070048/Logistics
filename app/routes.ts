@@ -24,8 +24,8 @@ export class Routes {
         if(err) {
             this.res.send({ success: false });
         } else {
-            var token = jwt.sign(data, 'letmein', { expiresIn: '1d' });
-            this.res.send({ success: true, token: token });
+            //var token = jwt.sign(data, new Buffer("letmein"), { expiresIn: '1d' });
+            this.res.send({ success: true });
         }
     }
     

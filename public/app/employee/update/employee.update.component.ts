@@ -20,30 +20,29 @@ export class EmployeeUpdateComponent implements OnInit {
     private employeeID: number;
     private employeeService: Employee;
 
-    constructor( 
-        @Inject(Http) private http: Http, 
-        @Inject(RouteParams) private params: RouteParams, 
-        @Inject(Location) private location: Location, 
-        @Inject(Router) private router: Router) 
-        { 
-            this.employee = {
-                _id: '',
-                firstname: '',
-                lastname: '',
-                employeeID: 0
+    constructor(
+        @Inject(Http) private http: Http,
+        @Inject(RouteParams) private params: RouteParams,
+        @Inject(Location) private location: Location,
+        @Inject(Router) private router: Router) {
+        this.employee = {
+            _id: '',
+            firstname: '',
+            lastname: '',
+            employeeID: 0
         }
     }
-    
+
     save = (e: IEmployee) => {
         this.employeeService.update(e)
             .subscribe(
-                (data) => this.updateEmployeeCallback(data.json()),
-                (err) => this.errorCallback(err) 
+            (data) => this.updateEmployeeCallback(data.json()),
+            (err) => this.errorCallback(err)
             );
     }
 
     updateEmployeeCallback = (data) => {
-        if(data.success) {
+        if (data.success) {
             //show success
             //route back to employees list
             //this.location.go('/Employees');
@@ -54,7 +53,7 @@ export class EmployeeUpdateComponent implements OnInit {
     errorCallback = (err) => {
         console.log(err);
     }
-    
+
     ngOnInit() {
         let _employeeID = parseInt(this.params.get('employeeID'));
         if (!isNaN(_employeeID)) {

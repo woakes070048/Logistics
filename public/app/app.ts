@@ -9,6 +9,7 @@ import {aboutComponent} from './about/about.component';
 import {defaultComponent} from './default/default.component';
 import {EmployeeListComponent} from './employee/list/employee.list.component';
 import {EmployeeUpdateComponent} from './employee/update/employee.update.component';
+import {EmployeeNewComponent} from './employee/new/employee.new.component';
 
 @Component({
     selector: 'app',
@@ -17,6 +18,7 @@ import {EmployeeUpdateComponent} from './employee/update/employee.update.compone
         <a [routerLink]="['/Home']">Home</a>
         <a [routerLink]="['/About']">About</a>
         <a [routerLink]="['/Employees']">Employee List</a>
+        <a [routerLink]="['/NewEmployee']">New Employee</a>
         <router-outlet></router-outlet>
     ` 
 })
@@ -26,6 +28,7 @@ import {EmployeeUpdateComponent} from './employee/update/employee.update.compone
     { path: '/', component: defaultComponent, as: 'Home'},
     { path: '/About', component: aboutComponent, as: 'About' },
     { path: '/Employees', component: EmployeeListComponent, as: 'Employees'},
+    { path: '/Employee', component: EmployeeNewComponent, as: 'NewEmployee'},
     { path: '/Employee/:employeeID/Update', component: EmployeeUpdateComponent , as: 'Update Employee'}
 ])
 

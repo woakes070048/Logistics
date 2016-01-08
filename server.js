@@ -48,6 +48,20 @@ app.post('/api/v1/Employee/:employeeID/Update', function (req, res) {
         res.send({ err: new Error('employeeID must be a number') });
     }
 });
+app.post('/api/v1/Employee', function (req, res) {
+    employee.Create(req.body, function (err, data) {
+        if (err)
+            res.send({ err: err });
+        res.send({ success: true, data: data });
+    });
+});
+app.post('/api/v1/Employee/Delete', function (req, res) {
+    employee.Delete(req.body._id, function (err, data) {
+        if (err)
+            res.send({ err: err });
+        res.send({ success: true, data: data });
+    });
+});
 app.listen(port);
 console.log('Magic happens on port ' + port);
 exports = module.exports = app;

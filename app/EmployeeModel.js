@@ -49,9 +49,41 @@ var EmployeeModel = (function () {
                 updateEmployee._id = new mongodb.ObjectID(employee._id);
                 updateEmployee.employeeID = parseInt(employee.employeeID);
                 doc.save(updateEmployee, function (err, result) {
-                    if (err)
+                    if (err) {
+                        _this.LogError(err);
                         callback(err);
+                    }
                     callback(null, true);
+                });
+            });
+        };
+        this.Create = function (employee, callback) {
+            _this.client.collection('employees', function (error, doc) {
+                if (error) {
+                    _this.LogError(error);
+                    callback(error);
+                }
+                doc.insert(employee, function (err, result) {
+                    if (err) {
+                        _this.LogError(err);
+                        callback(err);
+                    }
+                    callback(null, result);
+                });
+            });
+        };
+        this.Delete = function (id, callback) {
+            _this.client.collection('employees', function (error, doc) {
+                if (error) {
+                    _this.LogError(error);
+                    callback(error);
+                }
+                doc.remove({ _id: new mongodb.ObjectID(id) }, function (err, results) {
+                    if (err) {
+                        _this.LogError(err);
+                        callback(err);
+                    }
+                    callback(null, results);
                 });
             });
         };

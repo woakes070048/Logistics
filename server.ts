@@ -55,7 +55,21 @@ app.post('/api/v1/Employee/:employeeID/Update', (req: express.Request, res: expr
         res.send({err: new Error('employeeID must be a number')});
     }
     
-})
+});
+
+app.post('/api/v1/Employee', (req: express.Request, res: express.Response) => {
+    employee.Create(req.body, (err: Error, data: any) => {
+        if(err) res.send({err: err});
+        res.send({success: true, data: data});
+    })
+});
+
+app.post('/api/v1/Employee/Delete', (req: express.Request, res: express.Response) => {
+    employee.Delete(req.body._id, (err: Error, data: any) => {
+        if(err) res.send({err: err});
+        res.send({success: true, data: data});
+    })
+});
 
 // start app ===============================================
 

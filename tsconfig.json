@@ -22,8 +22,8 @@
         "commandLineParser.ts",
         "tsc.ts",
         "diagnosticInformationMap.generated.ts",
-        "./node_modules/angular2/ts/core.d.ts",
-        "./node_modules/angular2/ts/http.d.ts",
-        "./typings/angular2/angular2.d.ts"
+        "./node_modules/anglar2/ts/core.ts",
+        "./node_modules/anglar2/ts/http.ts",
+        "./node_modules/anglar2/ts/router.ts"
     ]
 }

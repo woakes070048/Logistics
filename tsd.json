@@ -6,25 +6,25 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+      "commit": "7bab855ae33d79e86da1eb6c73a7f7eab2676ddb"
     },
     "jsonwebtoken/jsonwebtoken.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "express/express.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "serve-static/serve-static.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "mime/mime.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "body-parser/body-parser.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "method-override/method-override.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "mongodb/mongodb.d.ts": {
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
@@ -39,6 +39,9 @@
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "rx/rx-lite.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "angular2/router.d.ts": {
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     }
   }

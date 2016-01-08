@@ -21,11 +21,23 @@ System.register(['angular2/http', '../classes/STATIC'], function(exports_1) {
                     this.get = function () {
                         return _this.http.get('/api/v1/Employee/' + _this.employeeID);
                     };
+                    this.create = function (e) {
+                        var body = 'firstname=' + e.firstname + '&lastname=' + e.lastname + '&employeeID=' + e.employeeID;
+                        var headers = new http_1.Headers();
+                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        return _this.http.post('/api/v1/Employee', body, { headers: headers });
+                    };
                     this.update = function (e) {
                         var body = '_id=' + e._id + '&firstname=' + e.firstname + '&lastname=' + e.lastname + '&employeeID=' + e.employeeID;
                         var headers = new http_1.Headers();
                         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-                        return _this.http.post('/api/v1/Employee/' + _this.employeeID + '/Update', body, { headers: headers });
+                        return _this.http.post('/api/v1/Employee' + _this.employeeID + '/Update', body, { headers: headers });
+                    };
+                    this.delete = function (id) {
+                        var body = '_id=' + id;
+                        var headers = new http_1.Headers();
+                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        return _this.http.post('/api/v1/Employee/Delete', body, { headers: headers });
                     };
                 }
                 return Employee;

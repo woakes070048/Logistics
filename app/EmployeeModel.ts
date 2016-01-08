@@ -59,11 +59,48 @@ export class EmployeeModel {
             updateEmployee._id = new mongodb.ObjectID(employee._id);
             updateEmployee.employeeID = parseInt(employee.employeeID);
             
-            doc.save(updateEmployee, (err: Error, result) => {
-                if(err) callback(err);
+            doc.save(updateEmployee, (err: Error, result: any) => {
+                if(err) {
+                    this.LogError(err);
+                    callback(err);
+                }
                 callback(null, true);
             });
             
+        });
+    }
+    
+    public Create = (employee: any, callback: (err? :Error, doc?: any) => void) => {
+        this.client.collection('employees', (error: Error, doc: mongodb.Collection) => {
+            if(error) {
+                this.LogError(error);
+                callback(error);
+            }
+            
+            doc.insert(employee, (err, result: any) => {
+                if(err) {
+                    this.LogError(err);
+                    callback(err);
+                }
+                callback(null, result);
+            }); 
+        });
+    }
+    
+    public Delete = (id, callback: (err?: Error, success?: boolean) => void) => {
+        this.client.collection('employees', (error: Error, doc: mongodb.Collection) => {
+            if(error) {
+                this.LogError(error);
+                callback(error);
+            }
+            
+            doc.remove({_id: new mongodb.ObjectID(id)}, (err: Error, results: any) => {
+                if(err) {
+                    this.LogError(err);
+                    callback(err);
+                }
+                callback(null, results);
+            });
         });
     }
     

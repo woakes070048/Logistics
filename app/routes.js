@@ -1,4 +1,3 @@
-var jwt = require('jsonwebtoken');
 var Auth = require('./auth');
 var Routes = (function () {
     function Routes() {
@@ -14,8 +13,7 @@ var Routes = (function () {
                 _this.res.send({ success: false });
             }
             else {
-                var token = jwt.sign(data, 'letmein', { expiresIn: '1d' });
-                _this.res.send({ success: true, token: token });
+                _this.res.send({ success: true });
             }
         };
     }
