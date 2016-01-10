@@ -62,7 +62,6 @@ var EmployeeModel = (function () {
                 }
                 var updateEmployee = employee;
                 updateEmployee._id = new mongodb.ObjectID(employee._id);
-                updateEmployee.employeeID = parseInt(employee.employeeID);
                 doc.save(updateEmployee, function (err, result) {
                     if (err) {
                         _this.LogError(err);

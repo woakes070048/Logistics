@@ -68,7 +68,6 @@ export class EmployeeModel {
             
             let updateEmployee = employee;
             updateEmployee._id = new mongodb.ObjectID(employee._id);
-            updateEmployee.employeeID = parseInt(employee.employeeID);
             
             doc.save(updateEmployee, (err: Error, result: any) => {
                 if(err) {
