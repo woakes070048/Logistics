@@ -1,8 +1,7 @@
 import {bootstrap} from 'angular2/platform/browser';
-import {Component, provide} from 'angular2/core';
+import {Component, provide, Inject} from 'angular2/core';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-import {RouteConfig,  ROUTER_DIRECTIVES, ROUTER_PROVIDERS,
-        LocationStrategy, HashLocationStrategy} from 'angular2/router';
+import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS,LocationStrategy, HashLocationStrategy} from 'angular2/router';
         
 import {LoginComponent} from './login/login.component';
 import {aboutComponent} from './about/about.component';
@@ -14,13 +13,7 @@ import {EmployeeNewComponent} from './employee/new/employee.new.component';
 @Component({
     selector: 'app',
     directives: [ROUTER_DIRECTIVES],
-    template: `
-        <a [routerLink]="['/Home']">Home</a>
-        <a [routerLink]="['/About']">About</a>
-        <a [routerLink]="['/Employees']">Employee List</a>
-        <a [routerLink]="['/NewEmployee']">New Employee</a>
-        <router-outlet></router-outlet>
-    ` 
+    templateUrl: './app/app.html'
 })
 
 @RouteConfig([
@@ -32,7 +25,12 @@ import {EmployeeNewComponent} from './employee/new/employee.new.component';
     { path: '/Employee/:username/Update', component: EmployeeUpdateComponent , as: 'Update Employee'}
 ])
 
-export class boot {}
+export class app {
+    private isActive: string;
+    constructor(@Inject(Router) private router: Router) {
+        this.isActive = this.router.lastNavigationAttempt;
+        
+    }
+}
 
-bootstrap(boot, [ROUTER_PROVIDERS, HTTP_PROVIDERS,
-       provide(LocationStrategy, {useClass: HashLocationStrategy})]);
+bootstrap(app, [ROUTER_PROVIDERS, HTTP_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy})]);

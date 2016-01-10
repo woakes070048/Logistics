@@ -1,27 +1,51 @@
 <form name="updateUserForm" id="updateUserForm" novalidate>
     <div class="row form-group">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="">Username</label>
             <input type="text" class="form-control" *ngIf="!employee._id" (change)="checkUsernameExists(employee.username)" [(ngModel)]="employee.username">
             <span *ngIf="employee._id">{{employee.username}}</span>
             <span class="text-danger" *ngIf="usernameTaken">*Username is taken, try another.</span>
             <span class="text-danger" *ngIf="!employee._id && !usernameValid">*Required</span>
         </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="">First Name</label>
             <input type="text" class="form-control" (change)="checkInputValid('firstname', employee.firstname)" [(ngModel)]="employee.firstname">
             <span class="text-danger" *ngIf="!firstnameValid">*Required</span>
         </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="">Last Name</label>
             <input type="text" class="form-control" (change)="checkInputValid('lastname', employee.lastname)" [(ngModel)]="employee.lastname">
             <span class="text-danger" *ngIf="!lastnameValid">*Required</span>
         </div>
     </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <label for="">Address1</label>
+            <input type="text" class="form-control" [(ngModel)]="employee.address1">
+        </div>
+         <div class="col-md-6">
+            <label for="">Address2</label>
+            <input type="text" class="form-control" [(ngModel)]="employee.address2">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-4">
+            <label for="">City</label>
+            <input type="text" class="form-control" [(ngModel)]="employee.city">
+        </div>
+        <div class="col-md-4">
+            <label for="">State</label>
+            <select class="form-control" name="states" id="states" [(ngModel)]="employee.state">
+                <option style="display: none" value="">Select</option>
+                <option *ngFor="#state of stateList" value="{{state.abbreviation}}">{{state.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="">City</label>
+            <input type="text" class="form-control" [(ngModel)]="employee.zip">
+        </div>
+    </div>
+
     <div class="row form-group">
         <div class="col-md-6">
             <button type="submit" class="btn btn-default" (click)="save(employee)">Save</button>

@@ -18,6 +18,7 @@ export class EmployeeNewComponent implements OnInit {
 
     private employee: IEmployee = { firstname: '', lastname: '', username: '' };
     private employeeService: Employee;
+    private stateList: any;
     public usernameTaken = false;
     public firstnameValid = true;
     public lastnameValid = true;
@@ -76,6 +77,10 @@ export class EmployeeNewComponent implements OnInit {
             this.router.parent.navigate(['/Employees']);
         }
     }
+    
+    statelistCallback = (data) => {
+        this.stateList = data;
+    }
 
     errorCallback = (e) => {
         console.log(e);
@@ -83,5 +88,9 @@ export class EmployeeNewComponent implements OnInit {
 
     ngOnInit() {
         this.employeeService = new Employee(this.http);
+        this.http.get('/api/v1/States').subscribe(
+            (data) => this.statelistCallback(data.json()),
+            (err) => this.errorCallback(err)
+        );
     }
 }

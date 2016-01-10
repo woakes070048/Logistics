@@ -1,0 +1,6 @@
+{
+    "openStates": {
+        "apiKey": "",
+        "baseUrl": "http://openstates.org/api/v1/"
+    }
+}

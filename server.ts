@@ -2,6 +2,9 @@
 
 import express = require('express');
 import mongodb = require('mongodb');
+let request = require('request');
+
+let config = require('./private/config.json');
 
 let app = express();
 
@@ -67,6 +70,13 @@ app.post('/api/v1/Employee/Exists', (req: express.Request, res: express.Response
         if(err) res.send({exists: true});
         res.send({exists: data});
     });
+});
+
+app.get('/api/v1/States', (req: express.Request, res: express.Response) => {
+    let url = config.openStates.baseUrl + '/metadata/?apikey=' + config.openStates.apiKey
+    request(url, (err: Error, response: any, html: any) => {
+        res.send(html);
+    })
 });
 
 // start app ===============================================

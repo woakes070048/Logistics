@@ -59,6 +59,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                         _this.lastnameValid = _this.employee.lastname.length > 0;
                         return _this.firstnameValid && _this.lastnameValid;
                     };
+                    this.statelistCallback = function (data) {
+                        _this.stateList = data;
+                    };
                     this.errorCallback = function (err) {
                         console.log(err);
                     };
@@ -68,6 +71,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.username = this.params.get('username');
                     this.employeeService = new Employee_1.Employee(this.http, this.username);
                     this.employeeService.get().subscribe(function (data) { _this.employee = data.json(); });
+                    this.http.get('/api/v1/States').subscribe(function (data) { return _this.statelistCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
                 };
                 EmployeeUpdateComponent = __decorate([
                     core_1.Component({

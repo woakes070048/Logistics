@@ -1,4 +1,6 @@
 var express = require('express');
+var request = require('request');
+var config = require('./private/config.json');
 var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -56,6 +58,12 @@ app.post('/api/v1/Employee/Exists', function (req, res) {
         if (err)
             res.send({ exists: true });
         res.send({ exists: data });
+    });
+});
+app.get('/api/v1/States', function (req, res) {
+    var url = config.openStates.baseUrl + '/metadata/?apikey=' + config.openStates.apiKey;
+    request(url, function (err, response, html) {
+        res.send(html);
     });
 });
 app.listen(port);

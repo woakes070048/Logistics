@@ -43,6 +43,9 @@
     },
     "angular2/router.d.ts": {
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "form-data/form-data.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     }
   }
 }

@@ -56,7 +56,6 @@ module.exports = function (grunt) {
                         "node_modules/angular2/bundles/http.dev.js",
                         "node_modules/rxjs/bundles/Rx.js",
                         "node_modules/jquery/dist/jquery.js"
-
                     ]
                 }
             }

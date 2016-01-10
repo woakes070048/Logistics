@@ -17,6 +17,7 @@ import {Employee} from '../../classes/Employee';
 export class EmployeeUpdateComponent implements OnInit {
 
     private employee: IEmployee = {firstname: '', lastname: '', username: ''};
+    private stateList: any;
     private username: string;
     private employeeService: Employee;
     public firstnameValid = true;
@@ -59,6 +60,10 @@ export class EmployeeUpdateComponent implements OnInit {
         return this.firstnameValid && this.lastnameValid;
     }
 
+    statelistCallback = (data) => {
+        this.stateList = data;
+    }
+
     errorCallback = (err) => {
         console.log(err);
     }
@@ -67,6 +72,11 @@ export class EmployeeUpdateComponent implements OnInit {
         this.username = this.params.get('username');
         this.employeeService = new Employee(this.http, this.username)
         this.employeeService.get().subscribe((data) => { this.employee = data.json() });
+        
+        this.http.get('/api/v1/States').subscribe(
+            (data) => this.statelistCallback(data.json()),
+            (err) => this.errorCallback(err)
+        );
 
     }
 }

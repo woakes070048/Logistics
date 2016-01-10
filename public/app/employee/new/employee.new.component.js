@@ -74,12 +74,17 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                             _this.router.parent.navigate(['/Employees']);
                         }
                     };
+                    this.statelistCallback = function (data) {
+                        _this.stateList = data;
+                    };
                     this.errorCallback = function (e) {
                         console.log(e);
                     };
                 }
                 EmployeeNewComponent.prototype.ngOnInit = function () {
+                    var _this = this;
                     this.employeeService = new Employee_1.Employee(this.http);
+                    this.http.get('/api/v1/States').subscribe(function (data) { return _this.statelistCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
                 };
                 EmployeeNewComponent = __decorate([
                     core_1.Component({

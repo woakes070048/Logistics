@@ -5,8 +5,11 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
+    var __param = (this && this.__param) || function (paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
+    };
     var browser_1, core_1, http_1, router_1, login_component_1, about_component_1, default_component_1, employee_list_component_1, employee_update_component_1, employee_new_component_1;
-    var boot;
+    var app;
     return {
         setters:[
             function (browser_1_1) {
@@ -40,14 +43,16 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
                 employee_new_component_1 = employee_new_component_1_1;
             }],
         execute: function() {
-            boot = (function () {
-                function boot() {
+            app = (function () {
+                function app(router) {
+                    this.router = router;
+                    this.isActive = this.router.lastNavigationAttempt;
                 }
-                boot = __decorate([
+                app = __decorate([
                     core_1.Component({
                         selector: 'app',
                         directives: [router_1.ROUTER_DIRECTIVES],
-                        template: "\n        <a [routerLink]=\"['/Home']\">Home</a>\n        <a [routerLink]=\"['/About']\">About</a>\n        <a [routerLink]=\"['/Employees']\">Employee List</a>\n        <a [routerLink]=\"['/NewEmployee']\">New Employee</a>\n        <router-outlet></router-outlet>\n    "
+                        templateUrl: './app/app.html'
                     }),
                     router_1.RouteConfig([
                         { path: '/Login', component: login_component_1.LoginComponent, as: 'Login' },
@@ -56,13 +61,13 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
                         { path: '/Employees', component: employee_list_component_1.EmployeeListComponent, as: 'Employees' },
                         { path: '/Employee', component: employee_new_component_1.EmployeeNewComponent, as: 'NewEmployee' },
                         { path: '/Employee/:username/Update', component: employee_update_component_1.EmployeeUpdateComponent, as: 'Update Employee' }
-                    ])
-                ], boot);
-                return boot;
+                    ]),
+                    __param(0, core_1.Inject(router_1.Router))
+                ], app);
+                return app;
             })();
-            exports_1("boot", boot);
-            browser_1.bootstrap(boot, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS,
-                core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })]);
+            exports_1("app", app);
+            browser_1.bootstrap(app, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })]);
         }
     }
 });
