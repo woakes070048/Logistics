@@ -22,13 +22,28 @@ System.register(['angular2/http', '../classes/STATIC'], function(exports_1) {
                         return _this.http.get('/api/v1/Employee/' + _this.username);
                     };
                     this.create = function (e) {
-                        var body = 'firstname=' + e.firstname + '&lastname=' + e.lastname + '&username=' + e.username;
+                        var body = '&firstname=' + e.firstname +
+                            '&lastname=' + e.lastname +
+                            '&username=' + e.username +
+                            '&address1=' + e.address1 +
+                            '&address2=' + e.address2 +
+                            '&city=' + e.city +
+                            '&state=' + e.state +
+                            '&zip=' + e.zip;
                         var headers = new http_1.Headers();
                         headers.append('Content-Type', 'application/x-www-form-urlencoded');
                         return _this.http.post('/api/v1/Employee', body, { headers: headers });
                     };
                     this.update = function (e) {
-                        var body = '_id=' + e._id + '&firstname=' + e.firstname + '&lastname=' + e.lastname + '&username=' + e.username;
+                        var body = '_id=' + e._id +
+                            '&firstname=' + e.firstname +
+                            '&lastname=' + e.lastname +
+                            '&username=' + e.username +
+                            '&address1=' + e.address1 +
+                            '&address2=' + e.address2 +
+                            '&city=' + e.city +
+                            '&state=' + e.state +
+                            '&zip=' + e.zip;
                         var headers = new http_1.Headers();
                         headers.append('Content-Type', 'application/x-www-form-urlencoded');
                         return _this.http.post('/api/v1/Employee/' + _this.username + '/Update', body, { headers: headers });

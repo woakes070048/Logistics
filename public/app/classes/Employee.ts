@@ -17,7 +17,14 @@ export class Employee {
     }
     
     create = (e: IEmployee) => {
-        let body = 'firstname=' + e.firstname + '&lastname=' + e.lastname + '&username=' + e.username;
+        let body =  '&firstname=' + e.firstname + 
+                    '&lastname=' + e.lastname + 
+                    '&username=' + e.username +
+                    '&address1=' + e.address1 +
+                    '&address2=' + e.address2 +
+                    '&city=' + e.city + 
+                    '&state=' + e.state +
+                    '&zip=' + e.zip;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         
@@ -26,7 +33,15 @@ export class Employee {
     
     update = (e: IEmployee) => {
         
-        let body = '_id=' + e._id + '&firstname=' + e.firstname + '&lastname=' + e.lastname + '&username=' + e.username;
+        let body =  '_id=' + e._id + 
+                    '&firstname=' + e.firstname + 
+                    '&lastname=' + e.lastname + 
+                    '&username=' + e.username +
+                    '&address1=' + e.address1 +
+                    '&address2=' + e.address2 +
+                    '&city=' + e.city + 
+                    '&state=' + e.state +
+                    '&zip=' + e.zip;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 

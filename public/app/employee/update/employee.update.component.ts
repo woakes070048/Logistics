@@ -27,10 +27,10 @@ export class EmployeeUpdateComponent implements OnInit {
     
     save = (e: IEmployee) => {
         if(this.checkFormValid()) {
-        this.employeeService.update(e)
-            .subscribe(
-            (data) => this.updateEmployeeCallback(data.json()),
-            (err) => this.errorCallback(err)
+            this.employeeService.update(e)
+                .subscribe(
+                (data) => this.updateEmployeeCallback(data.json()),
+                (err) => this.errorCallback(err)
             );
         }
     }
@@ -64,6 +64,11 @@ export class EmployeeUpdateComponent implements OnInit {
         this.stateList = data;
     }
 
+    getEmployeeCallback = (data) => {
+        console.log(data);
+        this.employee = data;
+    }
+
     errorCallback = (err) => {
         console.log(err);
     }
@@ -71,7 +76,10 @@ export class EmployeeUpdateComponent implements OnInit {
     ngOnInit() {
         this.username = this.params.get('username');
         this.employeeService = new Employee(this.http, this.username)
-        this.employeeService.get().subscribe((data) => { this.employee = data.json() });
+        this.employeeService.get().subscribe(
+            (data) => this.getEmployeeCallback(data.json()),
+            (err) => this.errorCallback(err)
+        );
         
         this.http.get('/api/v1/States').subscribe(
             (data) => this.statelistCallback(data.json()),
