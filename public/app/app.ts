@@ -29,7 +29,7 @@ import {EmployeeNewComponent} from './employee/new/employee.new.component';
     { path: '/About', component: aboutComponent, as: 'About' },
     { path: '/Employees', component: EmployeeListComponent, as: 'Employees'},
     { path: '/Employee', component: EmployeeNewComponent, as: 'NewEmployee'},
-    { path: '/Employee/:employeeID/Update', component: EmployeeUpdateComponent , as: 'Update Employee'}
+    { path: '/Employee/:username/Update', component: EmployeeUpdateComponent , as: 'Update Employee'}
 ])
 
 export class boot {}

@@ -10,29 +10,18 @@ import {Employee} from '../../classes/Employee';
     selector: 'update-employee',
     directives: [ROUTER_DIRECTIVES],
     inputs: ['employeeID'],
-    templateUrl: './app/employee/update/employee.update.component.html'
+    templateUrl: './app/employee/_employee.html'
 })
 
 
 export class EmployeeUpdateComponent implements OnInit {
 
-    private employee: IEmployee;
-    private employeeID: number;
+    private employee: IEmployee = {firstname: '', lastname: '', username: ''};
+    private username: string;
     private employeeService: Employee;
 
-    constructor(
-        @Inject(Http) private http: Http,
-        @Inject(RouteParams) private params: RouteParams,
-        @Inject(Location) private location: Location,
-        @Inject(Router) private router: Router) {
-        this.employee = {
-            _id: '',
-            firstname: '',
-            lastname: '',
-            employeeID: 0
-        }
-    }
-
+    constructor(@Inject(Http) private http: Http, @Inject(RouteParams) private params: RouteParams, @Inject(Location) private location: Location, @Inject(Router) private router: Router) {}
+    
     save = (e: IEmployee) => {
         this.employeeService.update(e)
             .subscribe(
@@ -55,12 +44,8 @@ export class EmployeeUpdateComponent implements OnInit {
     }
 
     ngOnInit() {
-        let _employeeID = parseInt(this.params.get('employeeID'));
-        if (!isNaN(_employeeID)) {
-            this.employeeID = _employeeID;
-        }
-
-        this.employeeService = new Employee(this.http, this.employeeID)
+        this.username = this.params.get('username');
+        this.employeeService = new Employee(this.http, this.username)
         this.employeeService.get().subscribe((data) => { this.employee = data.json() });
 
     }

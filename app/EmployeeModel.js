@@ -17,13 +17,13 @@ var EmployeeModel = (function () {
                 });
             });
         };
-        this.Get = function (employeeID, callback) {
+        this.Get = function (username, callback) {
             _this.client.collection('employees', function (error, docs) {
                 if (error) {
                     console.error(error);
                     callback(error);
                 }
-                docs.find({ 'employeeID': employeeID }, {}).toArray(function (err, results) {
+                docs.find({ username: username }, {}).toArray(function (err, results) {
                     if (error) {
                         console.error(error);
                         callback(err);
@@ -39,7 +39,7 @@ var EmployeeModel = (function () {
                 });
             });
         };
-        this.Update = function (employeeID, employee, callback) {
+        this.Update = function (username, employee, callback) {
             _this.client.collection('employees', function (error, doc) {
                 if (error) {
                     _this.LogError(error);

@@ -55,7 +55,7 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
                         { path: '/About', component: about_component_1.aboutComponent, as: 'About' },
                         { path: '/Employees', component: employee_list_component_1.EmployeeListComponent, as: 'Employees' },
                         { path: '/Employee', component: employee_new_component_1.EmployeeNewComponent, as: 'NewEmployee' },
-                        { path: '/Employee/:employeeID/Update', component: employee_update_component_1.EmployeeUpdateComponent, as: 'Update Employee' }
+                        { path: '/Employee/:username/Update', component: employee_update_component_1.EmployeeUpdateComponent, as: 'Update Employee' }
                     ])
                 ], boot);
                 return boot;

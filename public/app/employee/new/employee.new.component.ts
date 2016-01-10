@@ -10,21 +10,15 @@ import {IEmployee} from '../../interfaces/IEmployee';
     selector: 'new-employee',
     directives: [],
     inputs: ['employee'],
-    templateUrl: './app/employee/new/employee.new.component.html'
+    templateUrl: './app/employee/_employee.html'
 })
 
 export class EmployeeNewComponent implements OnInit {
     
-    private employee: IEmployee;
+    private employee: IEmployee = {firstname: '', lastname: '', username: ''};
     private employeeService: Employee;
     
-    constructor(@Inject(Http) private http: Http, @Inject(Router) private router: Router) {
-        this.employee = {
-            firstname: '',
-            lastname: '',
-            employeeID: 0
-        }
-    }
+    constructor(@Inject(Http) private http: Http, @Inject(Router) private router: Router) { }
     
     save = (e: IEmployee) => {
         this.employeeService.create(e).subscribe(

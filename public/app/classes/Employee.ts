@@ -6,18 +6,18 @@ import {IEmployee} from '../interfaces/IEmployee';
 
 export class Employee {
     
-    constructor(private http: Http, private employeeID?: number) { }
+    constructor(private http: Http, private username?: string) { }
     
     list = (): any => {
         return this.http.get(STATIC.getEmployeesPath);
     }
     
     get = () => {
-        return this.http.get('/api/v1/Employee/' + this.employeeID);
+        return this.http.get('/api/v1/Employee/' + this.username);
     }
     
     create = (e: IEmployee) => {
-        let body = 'firstname=' + e.firstname + '&lastname=' + e.lastname + '&employeeID=' + e.employeeID;
+        let body = 'firstname=' + e.firstname + '&lastname=' + e.lastname + '&username=' + e.username;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         
@@ -26,11 +26,11 @@ export class Employee {
     
     update = (e: IEmployee) => {
         
-        let body = '_id=' + e._id + '&firstname=' + e.firstname + '&lastname=' + e.lastname + '&employeeID=' + e.employeeID;
+        let body = '_id=' + e._id + '&firstname=' + e.firstname + '&lastname=' + e.lastname + '&username=' + e.username;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('/api/v1/Employee' + this.employeeID + '/Update', body, { headers: headers });
+        return this.http.post('/api/v1/Employee/' + this.username + '/Update', body, { headers: headers });
     }
     
     delete = (id: string) => {

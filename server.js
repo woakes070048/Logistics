@@ -21,32 +21,21 @@ app.get('/api/v1/Employees', function (req, res) {
         res.send(data);
     });
 });
-app.get('/api/v1/Employee/:employeeID', function (req, res) {
-    var employeeID = parseInt(req.params.employeeID);
-    if (!isNaN(employeeID)) {
-        employee.Get(employeeID, function (err, data) {
-            if (err) {
-                res.send({ err: err });
-            }
-            res.send(data);
-        });
-    }
-    else {
-        res.send({ err: new Error('employeeID must be a number') });
-    }
+app.get('/api/v1/Employee/:username', function (req, res) {
+    employee.Get(req.params.username, function (err, data) {
+        if (err) {
+            res.send({ err: err });
+        }
+        res.send(data);
+    });
 });
-app.post('/api/v1/Employee/:employeeID/Update', function (req, res) {
-    var employeeID = parseInt(req.params.employeeID);
-    if (!isNaN(employeeID)) {
-        employee.Update(employeeID, req.body, function (err, success) {
-            if (err)
-                res.send({ err: err });
-            res.send({ success: success });
-        });
-    }
-    else {
-        res.send({ err: new Error('employeeID must be a number') });
-    }
+app.post('/api/v1/Employee/:username/Update', function (req, res) {
+    var username = req.params.username;
+    employee.Update(username, req.body, function (err, success) {
+        if (err)
+            res.send({ err: err });
+        res.send({ success: success });
+    });
 });
 app.post('/api/v1/Employee', function (req, res) {
     employee.Create(req.body, function (err, data) {

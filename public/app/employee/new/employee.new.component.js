@@ -30,6 +30,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     var _this = this;
                     this.http = http;
                     this.router = router;
+                    this.employee = { firstname: '', lastname: '', username: '' };
                     this.save = function (e) {
                         _this.employeeService.create(e).subscribe(function (data) { return _this.newEmployeeDataCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
                     };
@@ -41,11 +42,6 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                             _this.router.parent.navigate(['/Employees']);
                         }
                     };
-                    this.employee = {
-                        firstname: '',
-                        lastname: '',
-                        employeeID: 0
-                    };
                 }
                 EmployeeNewComponent.prototype.ngOnInit = function () {
                     this.employeeService = new Employee_1.Employee(this.http);
@@ -55,7 +51,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                         selector: 'new-employee',
                         directives: [],
                         inputs: ['employee'],
-                        templateUrl: './app/employee/new/employee.new.component.html'
+                        templateUrl: './app/employee/_employee.html'
                     }),
                     __param(0, core_1.Inject(http_1.Http)),
                     __param(1, core_1.Inject(router_1.Router))

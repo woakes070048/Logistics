@@ -31,11 +31,11 @@ export class EmployeeModel {
         });
     }
     
-    public Get = (employeeID: number, callback: (err?: Error, doc?: mongodb.Collection) => void) => {
+    public Get = (username: string, callback: (err?: Error, doc?: mongodb.Collection) => void) => {
         this.client.collection('employees', (error: Error, docs: mongodb.Collection) => {
             if (error) { console.error(error); callback(error); }
 
-            docs.find({'employeeID': employeeID }, {}).toArray((err: Error, results: any) => {
+            docs.find({username: username }, {}).toArray((err: Error, results: any) => {
                 if (error) { console.error(error); callback(err); }
                 if(results.length === 1) {
                     callback(null, results[0]);
@@ -48,7 +48,7 @@ export class EmployeeModel {
         });
     }
     
-    public Update = (employeeID: number, employee: any, callback: (err?: Error, success?: boolean) => void) => {
+    public Update = (username: string, employee: any, callback: (err?: Error, success?: boolean) => void) => {
         this.client.collection('employees', (error: Error, doc: mongodb.Collection) => {
            if(error) {
                this.LogError(error);

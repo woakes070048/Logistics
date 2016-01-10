@@ -4,9 +4,10 @@
         "experimentalDecorators": true,
         "target": "es5",
         "module": "commonjs",
-        "moduleResolution": "classic",
-        "sourceMap": true,
-        "noLibCheck": true
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false
     },
     "files": [
         "core.ts",
@@ -21,9 +22,9 @@
         "program.ts",
         "commandLineParser.ts",
         "tsc.ts",
-        "diagnosticInformationMap.generated.ts",
-        "./node_modules/anglar2/ts/core.ts",
-        "./node_modules/anglar2/ts/http.ts",
-        "./node_modules/anglar2/ts/router.ts"
+        "diagnosticInformationMap.generated.ts"
+    ],
+    "fileGlobs": [
+        "!./node_modules/**"
     ]
 }
