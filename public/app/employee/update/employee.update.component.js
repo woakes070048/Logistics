@@ -33,14 +33,31 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.location = location;
                     this.router = router;
                     this.employee = { firstname: '', lastname: '', username: '' };
+                    this.firstnameValid = true;
+                    this.lastnameValid = true;
                     this.save = function (e) {
-                        _this.employeeService.update(e)
-                            .subscribe(function (data) { return _this.updateEmployeeCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
+                        if (_this.checkFormValid()) {
+                            _this.employeeService.update(e)
+                                .subscribe(function (data) { return _this.updateEmployeeCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
+                        }
                     };
                     this.updateEmployeeCallback = function (data) {
                         if (data.success) {
                             _this.router.parent.navigate(['/Employees']);
                         }
+                    };
+                    this.checkInputValid = function (input, value) {
+                        if (value.length > 0) {
+                            _this[input + 'Valid'] = true;
+                        }
+                        else {
+                            _this[input + 'Valid'] = false;
+                        }
+                    };
+                    this.checkFormValid = function () {
+                        _this.firstnameValid = _this.employee.firstname.length > 0;
+                        _this.lastnameValid = _this.employee.lastname.length > 0;
+                        return _this.firstnameValid && _this.lastnameValid;
                     };
                     this.errorCallback = function (err) {
                         console.log(err);

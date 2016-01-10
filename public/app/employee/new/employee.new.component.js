@@ -31,16 +31,51 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.http = http;
                     this.router = router;
                     this.employee = { firstname: '', lastname: '', username: '' };
+                    this.usernameTaken = false;
+                    this.firstnameValid = true;
+                    this.lastnameValid = true;
+                    this.usernameValid = true;
                     this.save = function (e) {
-                        _this.employeeService.create(e).subscribe(function (data) { return _this.newEmployeeDataCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
+                        if (_this.checkFormValid()) {
+                            _this.employeeService.create(e).subscribe(function (data) { return _this.newEmployeeDataCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
+                        }
                     };
-                    this.errorCallback = function (e) {
-                        console.log(e);
+                    this.checkInputValid = function (input, value) {
+                        if (value.length > 0) {
+                            _this[input + 'Valid'] = true;
+                        }
+                        else {
+                            _this[input + 'Valid'] = false;
+                        }
+                    };
+                    this.checkFormValid = function () {
+                        _this.firstnameValid = _this.employee.firstname.length > 0;
+                        _this.lastnameValid = _this.employee.lastname.length > 0;
+                        _this.usernameValid = _this.employee.username.length > 0;
+                        return _this.firstnameValid && _this.lastnameValid && _this.usernameValid;
+                    };
+                    this.checkUsernameExists = function (username) {
+                        if (username.length > 0) {
+                            _this.employeeService.checkUsernameExists(username).subscribe(function (data) { return _this.checkUsernameCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
+                        }
+                        _this.checkInputValid('username', _this.employee.username);
+                    };
+                    this.checkUsernameCallback = function (data) {
+                        console.log(data);
+                        if (data.exists) {
+                            _this.usernameTaken = true;
+                        }
+                        else {
+                            _this.usernameTaken = false;
+                        }
                     };
                     this.newEmployeeDataCallback = function (data) {
                         if (data.success) {
                             _this.router.parent.navigate(['/Employees']);
                         }
+                    };
+                    this.errorCallback = function (e) {
+                        console.log(e);
                     };
                 }
                 EmployeeNewComponent.prototype.ngOnInit = function () {

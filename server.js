@@ -51,6 +51,13 @@ app.post('/api/v1/Employee/Delete', function (req, res) {
         res.send({ success: true, data: data });
     });
 });
+app.post('/api/v1/Employee/Exists', function (req, res) {
+    employee.CheckExists(req.body.username, function (err, data) {
+        if (err)
+            res.send({ exists: true });
+        res.send({ exists: data });
+    });
+});
 app.listen(port);
 console.log('Magic happens on port ' + port);
 exports = module.exports = app;

@@ -2,6 +2,21 @@ var mongodb = require('mongodb');
 var EmployeeModel = (function () {
     function EmployeeModel() {
         var _this = this;
+        this.CheckExists = function (username, callback) {
+            _this.client.collection('employees', function (error, docs) {
+                if (error) {
+                    console.error(error);
+                    callback(error);
+                }
+                docs.find({ username: username }, { limit: 1 }).toArray(function (err, docs) {
+                    if (error) {
+                        console.error(error);
+                        callback(err);
+                    }
+                    callback(null, docs.length > 0);
+                });
+            });
+        };
         this.All = function (callback) {
             _this.client.collection('employees', function (error, docs) {
                 if (error) {

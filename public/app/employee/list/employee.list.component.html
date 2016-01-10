@@ -1,6 +1,6 @@
 <ul>
     <li *ngFor="#employee of employeeList">
-        {{employee.firstname}} {{employee.lastname}} {{employee.employeeID}} 
+        {{employee.username}} {{employee.firstname}} {{employee.lastname}} {{employee.employeeID}} 
         <a href="#/Employee/{{employee.username}}/Update">Update</a>
         <a href="#" (click)="delete($event, employee)">Delete</a>
     </li> 

@@ -1,20 +1,25 @@
-<form novalidate>
+<form name="updateUserForm" id="updateUserForm" novalidate>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <label for="">Username</label>
+            <input type="text" class="form-control" *ngIf="!employee._id" (change)="checkUsernameExists(employee.username)" [(ngModel)]="employee.username">
+            <span *ngIf="employee._id">{{employee.username}}</span>
+            <span class="text-danger" *ngIf="usernameTaken">*Username is taken, try another.</span>
+            <span class="text-danger" *ngIf="!employee._id && !usernameValid">*Required</span>
+        </div>
+    </div>
     <div class="row form-group">
         <div class="col-md-6">
             <label for="">First Name</label>
-            <input type="text" class="form-control" [(ngModel)]="employee.firstname">
+            <input type="text" class="form-control" (change)="checkInputValid('firstname', employee.firstname)" [(ngModel)]="employee.firstname">
+            <span class="text-danger" *ngIf="!firstnameValid">*Required</span>
         </div>
     </div>
     <div class="row form-group">
         <div class="col-md-6">
             <label for="">Last Name</label>
-            <input type="text" class="form-control" [(ngModel)]="employee.lastname">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-6">
-            <label for="">Username</label>
-            <input type="text" class="form-control" [(ngModel)]="employee.username">
+            <input type="text" class="form-control" (change)="checkInputValid('lastname', employee.lastname)" [(ngModel)]="employee.lastname">
+            <span class="text-danger" *ngIf="!lastnameValid">*Required</span>
         </div>
     </div>
     <div class="row form-group">

@@ -20,6 +20,17 @@ export class EmployeeModel {
         });
     }
 
+    public CheckExists = (username: string, callback: (err?: Error, exists?: boolean) => void) => {
+        this.client.collection('employees', (error: Error, docs: mongodb.Collection) => {
+            if (error) { console.error(error); callback(error); }
+
+            docs.find({username: username}, { limit: 1 }).toArray((err: Error, docs: any) => {
+                if (error) { console.error(error); callback(err); }
+                callback(null, docs.length > 0);
+            });
+        });
+    }
+
     public All = (callback: (err?: Error, docs?: mongodb.Collection[]) => void) => {
         this.client.collection('employees', (error: Error, docs: mongodb.Collection) => {
             if (error) { console.error(error); callback(error); }

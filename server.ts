@@ -62,6 +62,13 @@ app.post('/api/v1/Employee/Delete', (req: express.Request, res: express.Response
     })
 });
 
+app.post('/api/v1/Employee/Exists', (req: express.Request, res: express.Response) => {
+    employee.CheckExists(req.body.username, (err: Error, data: boolean) => {
+        if(err) res.send({exists: true});
+        res.send({exists: data});
+    });
+});
+
 // start app ===============================================
 
 app.listen(port);										// startup our app at http://localhost:8080

@@ -39,6 +39,12 @@ System.register(['angular2/http', '../classes/STATIC'], function(exports_1) {
                         headers.append('Content-Type', 'application/x-www-form-urlencoded');
                         return _this.http.post('/api/v1/Employee/Delete', body, { headers: headers });
                     };
+                    this.checkUsernameExists = function (username) {
+                        var body = 'username=' + username;
+                        var headers = new http_1.Headers();
+                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        return _this.http.post('/api/v1/Employee/Exists', body, { headers: headers });
+                    };
                 }
                 return Employee;
             })();

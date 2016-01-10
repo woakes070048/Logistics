@@ -39,4 +39,11 @@ export class Employee {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post('/api/v1/Employee/Delete', body, {headers: headers});
     }
+    
+    checkUsernameExists = (username) => {
+        let body = 'username=' + username;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http.post('/api/v1/Employee/Exists', body, {headers: headers});
+    }
 }
