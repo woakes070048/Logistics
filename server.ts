@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 
 // routes ==================================================
 
-import routes = require('./app/routes');
+import routes = require('./app/Routes');
 let r = new routes.Routes(app);
 
 // start app ===============================================

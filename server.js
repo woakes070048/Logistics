@@ -8,7 +8,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
-var routes = require('./app/routes');
+var routes = require('./app/Routes');
 var r = new routes.Routes(app);
 app.listen(port);
 console.log('Magic happens on port ' + port);
