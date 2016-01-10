@@ -2,19 +2,9 @@
 
 import express = require('express');
 import mongodb = require('mongodb');
-let request = require('request');
-
-let config = require('./private/config.json');
-
-let app = express();
-
 import bodyParser = require('body-parser');
 import methodOverride = require('method-override');
-
-import routes = require('./app/routes');
-import auth = require('./app/auth');
-import employeeModel = require('./app/EmployeeModel');
-
+let app = express();
 let port = process.env.PORT || 3000;
 
 // get all data/stuff of the body (POST) parameters
@@ -26,58 +16,9 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 
 // routes ==================================================
-let Routes = new routes.Routes();
-let employee = new employeeModel.EmployeeModel();
 
-app.post('/api/v1/Token', Routes.Token);
-app.get('/api/v1/Employees', (req: express.Request, res: express.Response) => {
-    employee.All((err: Error, data: mongodb.Collection[]) => {
-        if(err) { res.send({err: err}); }
-        res.send(data);
-    });
-});
-app.get('/api/v1/Employee/:username', (req: express.Request, res: express.Response) => {
-    employee.Get(req.params.username, (err: Error, data: mongodb.Collection) => {
-            if(err) { res.send({err: err}); }
-            res.send(data);
-        });
-});
-app.post('/api/v1/Employee/:username/Update', (req: express.Request, res: express.Response) => {
-    let username = req.params.username;
-    employee.Update(username, req.body, (err: Error, success: boolean) => {
-        if(err) res.send({err: err});
-        res.send({success: success}); //might want to send back the document
-    });
-    
-});
-
-app.post('/api/v1/Employee', (req: express.Request, res: express.Response) => {
-    employee.Create(req.body, (err: Error, data: any) => {
-        if(err) res.send({err: err});
-        res.send({success: true, data: data});
-    })
-});
-
-app.post('/api/v1/Employee/Delete', (req: express.Request, res: express.Response) => {
-    employee.Delete(req.body._id, (err: Error, data: any) => {
-        if(err) res.send({err: err});
-        res.send({success: true, data: data});
-    })
-});
-
-app.post('/api/v1/Employee/Exists', (req: express.Request, res: express.Response) => {
-    employee.CheckExists(req.body.username, (err: Error, data: boolean) => {
-        if(err) res.send({exists: true});
-        res.send({exists: data});
-    });
-});
-
-app.get('/api/v1/States', (req: express.Request, res: express.Response) => {
-    let url = config.openStates.baseUrl + '/metadata/?apikey=' + config.openStates.apiKey
-    request(url, (err: Error, response: any, html: any) => {
-        res.send(html);
-    })
-});
+import routes = require('./app/routes');
+let r = new routes.Routes(app);
 
 // start app ===============================================
 

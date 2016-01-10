@@ -7,4 +7,4 @@ var Auth = (function () {
     return Auth;
 })();
 exports.Auth = Auth;
-//# sourceMappingURL=auth.js.map
+//# sourceMappingURL=Auth.js.map
