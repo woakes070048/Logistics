@@ -81,7 +81,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     core_1.Component({
                         selector: 'update-employee',
                         directives: [router_1.ROUTER_DIRECTIVES],
-                        inputs: ['employeeID'],
+                        inputs: [],
                         templateUrl: './app/employee/_employee.html'
                     }),
                     __param(0, core_1.Inject(http_1.Http)),

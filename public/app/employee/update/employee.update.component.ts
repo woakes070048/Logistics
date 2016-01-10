@@ -9,7 +9,7 @@ import {Employee} from '../../classes/Employee';
 @Component({
     selector: 'update-employee',
     directives: [ROUTER_DIRECTIVES],
-    inputs: ['employeeID'],
+    inputs: [],
     templateUrl: './app/employee/_employee.html'
 })
 
