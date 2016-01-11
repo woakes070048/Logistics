@@ -1,121 +1,70 @@
 var mongodb = require('mongodb');
+var mongoose = require('mongoose');
 var EmployeeModel = (function () {
     function EmployeeModel() {
         var _this = this;
+        this.employeeSchema = new mongoose.Schema({
+            username: 'string',
+            firstname: 'string',
+            lastname: 'string',
+            address1: 'string',
+            address2: 'string',
+            city: 'string',
+            state: 'string',
+            zip: 'string'
+        });
         this.CheckExists = function (username, callback) {
-            _this.client.collection('employees', function (error, docs) {
-                if (error) {
-                    console.error(error);
-                    callback(error);
-                }
-                docs.find({ username: username }, { limit: 1 }).toArray(function (err, docs) {
-                    if (error) {
-                        console.error(error);
-                        callback(err);
-                    }
-                    callback(null, docs.length > 0);
-                });
+            _this.Employee.find({ username: username }, function (err, docs) {
+                if (err)
+                    callback(err, true);
+                callback(null, docs.length > 0);
             });
         };
         this.All = function (callback) {
-            _this.client.collection('employees', function (error, docs) {
-                if (error) {
-                    console.error(error);
-                    callback(error);
-                }
-                docs.find({}, { limit: 100 }).toArray(function (err, docs) {
-                    if (error) {
-                        console.error(error);
-                        callback(err);
-                    }
-                    callback(null, docs);
-                });
+            _this.Employee.find(function (err, docs) {
+                if (err)
+                    callback(err);
+                callback(null, docs);
             });
         };
         this.Get = function (username, callback) {
-            _this.client.collection('employees', function (error, docs) {
-                if (error) {
-                    console.error(error);
-                    callback(error);
-                }
-                docs.find({ username: username }, {}).toArray(function (err, results) {
-                    if (error) {
-                        console.error(error);
-                        callback(err);
-                    }
-                    if (results.length === 1) {
-                        callback(null, results[0]);
-                    }
-                    else {
-                        var e = new Error("Too many employees");
-                        _this.LogError(e);
-                        callback(e);
-                    }
-                });
+            _this.Employee.findOne({ username: username }, function (err, docs) {
+                if (err)
+                    callback(err);
+                callback(null, docs);
             });
         };
         this.Update = function (username, employee, callback) {
-            _this.client.collection('employees', function (error, doc) {
-                if (error) {
-                    _this.LogError(error);
-                    callback(error);
-                }
-                var updateEmployee = employee;
-                updateEmployee._id = new mongodb.ObjectID(employee._id);
-                doc.save(updateEmployee, function (err, result) {
-                    if (err) {
-                        _this.LogError(err);
-                        callback(err);
-                    }
-                    callback(null, true);
-                });
+            _this.Employee.update(employee, function (err, result) {
+                if (err)
+                    callback(err);
+                callback(null, true);
             });
         };
         this.Create = function (employee, callback) {
-            _this.client.collection('employees', function (error, doc) {
-                if (error) {
-                    _this.LogError(error);
-                    callback(error);
-                }
-                doc.insert(employee, function (err, result) {
-                    if (err) {
-                        _this.LogError(err);
-                        callback(err);
-                    }
-                    callback(null, result);
-                });
+            var newEmployee = new _this.Employee(employee);
+            newEmployee.save(function (err, res) {
+                if (err)
+                    callback(err);
+                callback(null, res);
             });
         };
         this.Delete = function (id, callback) {
-            _this.client.collection('employees', function (error, doc) {
-                if (error) {
-                    _this.LogError(error);
-                    callback(error);
-                }
-                doc.remove({ _id: new mongodb.ObjectID(id) }, function (err, results) {
-                    if (err) {
-                        _this.LogError(err);
-                        callback(err);
-                    }
-                    callback(null, results);
-                });
+            _this.Employee.remove({ _id: new mongodb.ObjectID(id) }, function (err) {
+                if (err)
+                    callback(err);
+                callback(null, true);
             });
         };
         this.LogError = function (err) {
             console.log(err);
         };
-        var dbname = 'logistics';
-        var host = 'localhost';
-        var port = 27017;
-        this.server = new mongodb.Server(host, port, { auto_reconnect: true });
-        this.client = new mongodb.Db(dbname, this.server);
-        this.client.open(function (err) {
-            if (err) {
-                console.log(err);
-            }
-        });
+        this._mongoose = mongoose.connect('mongodb://localhost/logistics');
+        this.db = this._mongoose.connection;
+        this.db.on('error', console.error.bind(console, 'connection error:'));
+        this.Employee = mongoose.model('employees', this.employeeSchema);
     }
     return EmployeeModel;
 })();
-exports.EmployeeModel = EmployeeModel;
+module.exports = EmployeeModel;
 //# sourceMappingURL=EmployeeModel.js.map

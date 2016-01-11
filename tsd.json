@@ -6,7 +6,7 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "7bab855ae33d79e86da1eb6c73a7f7eab2676ddb"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "jsonwebtoken/jsonwebtoken.d.ts": {
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
@@ -45,6 +45,9 @@
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "form-data/form-data.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "mongoose/mongoose.d.ts": {
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     }
   }

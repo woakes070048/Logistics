@@ -7,7 +7,7 @@ let request = require('request');
 
 export class Routes {
     
-    private employee = new employeeModel.EmployeeModel();
+    private employee = new employeeModel();
     private config = require('../private/config.json');
 
     constructor(private app: express.Application) {

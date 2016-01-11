@@ -4,7 +4,7 @@ var Routes = (function () {
     function Routes(app) {
         var _this = this;
         this.app = app;
-        this.employee = new employeeModel.EmployeeModel();
+        this.employee = new employeeModel();
         this.config = require('../private/config.json');
         app.get('/api/v1/Employees', function (req, res) {
             _this.employee.All(function (err, data) {

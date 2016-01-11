@@ -65,7 +65,6 @@ export class EmployeeUpdateComponent implements OnInit {
     }
 
     getEmployeeCallback = (data) => {
-        console.log(data);
         this.employee = data;
     }
 

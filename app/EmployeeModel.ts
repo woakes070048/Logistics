@@ -1,121 +1,81 @@
 /// <reference path="../typings/tsd.d.ts" />
 
 import mongodb = require('mongodb');
+import mongoose = require('mongoose');
 
-export class EmployeeModel {
-    private server: mongodb.Server;
-    private client: mongodb.Db;
+class EmployeeModel {
+    // private server: mongodb.Server;
+    // private client: mongodb.Db;
+    
+    private db: mongoose.Connection;
+    private _mongoose: mongoose.Mongoose;
+    private Employee: mongoose.Model<mongoose.Document>;
+    private employeeSchema = new mongoose.Schema({
+        username: 'string',
+        firstname: 'string',
+        lastname: 'string',
+        address1: 'string',
+        address2: 'string',
+        city: 'string',
+        state: 'string',
+        zip: 'string'
+    });
 
     constructor() {
-        let dbname: string = 'logistics';
-        let host: string = 'localhost';
-        let port: number = 27017;
-
-        this.server = new mongodb.Server(host, port, { auto_reconnect: true });
-        this.client = new mongodb.Db(dbname, this.server);
-        this.client.open((err) => {
-            if (err) {
-                console.log(err);
-            }
-        });
+        
+        this._mongoose = mongoose.connect('mongodb://localhost/logistics');
+        this.db = this._mongoose.connection;
+        this.db.on('error', console.error.bind(console, 'connection error:'));
+        this.Employee = mongoose.model('employees', this.employeeSchema);
     }
 
     public CheckExists = (username: string, callback: (err?: Error, exists?: boolean) => void) => {
-        this.client.collection('employees', (error: Error, docs: mongodb.Collection) => {
-            if (error) { console.error(error); callback(error); }
-
-            docs.find({username: username}, { limit: 1 }).toArray((err: Error, docs: any) => {
-                if (error) { console.error(error); callback(err); }
-                callback(null, docs.length > 0);
-            });
+        this.Employee.find({username: username}, (err: Error, docs: any) => {
+            if(err) callback(err, true);
+            callback(null, docs.length > 0);
         });
     }
 
     public All = (callback: (err?: Error, docs?: mongodb.Collection[]) => void) => {
-        this.client.collection('employees', (error: Error, docs: mongodb.Collection) => {
-            if (error) { console.error(error); callback(error); }
-
-            docs.find({}, { limit: 100 }).toArray((err: Error, docs: any) => {
-                if (error) { console.error(error); callback(err); }
-                callback(null, docs);
-            });
+        this.Employee.find((err: Error, docs: any) => {
+            if(err) callback(err);
+            callback(null, docs);
         });
     }
     
     public Get = (username: string, callback: (err?: Error, doc?: mongodb.Collection) => void) => {
-        this.client.collection('employees', (error: Error, docs: mongodb.Collection) => {
-            if (error) { console.error(error); callback(error); }
-
-            docs.find({username: username }, {}).toArray((err: Error, results: any) => {
-                if (error) { console.error(error); callback(err); }
-                if(results.length === 1) {
-                    callback(null, results[0]);
-                } else {
-                    let e = new Error("Too many employees");
-                    this.LogError(e);
-                    callback(e);
-                }
-            });
+        this.Employee.findOne({username: username}, (err: Error, docs: any) => {
+            if(err) callback(err);
+            callback(null, docs);
         });
     }
     
     public Update = (username: string, employee: any, callback: (err?: Error, success?: boolean) => void) => {
-        this.client.collection('employees', (error: Error, doc: mongodb.Collection) => {
-           if(error) {
-               this.LogError(error);
-               callback(error);
-            } 
-            
-            let updateEmployee = employee;
-            updateEmployee._id = new mongodb.ObjectID(employee._id);
-            
-            doc.save(updateEmployee, (err: Error, result: any) => {
-                if(err) {
-                    this.LogError(err);
-                    callback(err);
-                }
-                callback(null, true);
-            });
-            
+        this.Employee.update(employee, (err: Error, result: any) => {
+            if(err) callback(err);
+            callback(null, true);
         });
     }
     
     public Create = (employee: any, callback: (err? :Error, doc?: any) => void) => {
-        this.client.collection('employees', (error: Error, doc: mongodb.Collection) => {
-            if(error) {
-                this.LogError(error);
-                callback(error);
-            }
-            
-            doc.insert(employee, (err, result: any) => {
-                if(err) {
-                    this.LogError(err);
-                    callback(err);
-                }
-                callback(null, result);
-            }); 
+
+        let newEmployee = new this.Employee(employee);
+        newEmployee.save((err: Error, res: any) => {
+            if(err) callback(err);
+            callback(null, res);
         });
     }
     
     public Delete = (id, callback: (err?: Error, success?: boolean) => void) => {
-        this.client.collection('employees', (error: Error, doc: mongodb.Collection) => {
-            if(error) {
-                this.LogError(error);
-                callback(error);
-            }
-            
-            doc.remove({_id: new mongodb.ObjectID(id)}, (err: Error, results: any) => {
-                if(err) {
-                    this.LogError(err);
-                    callback(err);
-                }
-                callback(null, results);
-            });
+        this.Employee.remove({_id: new mongodb.ObjectID(id)}, (err: Error) => {
+            if(err) callback(err);
+            callback(null, true);
         });
     }
     
     private LogError = (err: Error) => {
         console.log(err);
     }
-
 }
+
+export = EmployeeModel;

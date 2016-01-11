@@ -63,7 +63,6 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                         _this.stateList = data;
                     };
                     this.getEmployeeCallback = function (data) {
-                        console.log(data);
                         _this.employee = data;
                     };
                     this.errorCallback = function (err) {
