@@ -9,6 +9,7 @@ import {defaultComponent} from './default/default.component';
 import {EmployeeListComponent} from './employee/list/employee.list.component';
 import {EmployeeUpdateComponent} from './employee/update/employee.update.component';
 import {EmployeeNewComponent} from './employee/new/employee.new.component';
+import {DepartmentsComponent} from './admin/departments/departments.component';
 
 @Component({
     selector: 'app',
@@ -22,7 +23,8 @@ import {EmployeeNewComponent} from './employee/new/employee.new.component';
     { path: '/About', component: aboutComponent, as: 'About' },
     { path: '/Employees', component: EmployeeListComponent, as: 'Employees'},
     { path: '/Employee', component: EmployeeNewComponent, as: 'NewEmployee'},
-    { path: '/Employee/:username/Update', component: EmployeeUpdateComponent , as: 'Update Employee'}
+    { path: '/Employee/:username/Update', component: EmployeeUpdateComponent , as: 'Update Employee'},
+    { path: '/Admin/Departments', component: DepartmentsComponent, as: 'Admin_Departments' }
 ])
 
 export class app {

@@ -1,0 +1,18 @@
+<div class="row form-inline">
+    <div class="col-md-6">
+        <label for="">Title</label>
+        <input class="form-control" type="text" [(ngModel)]="department.title">
+        <button class="btn btn-default" type="submit" (click)="new(department)">Add</button>
+    </div>
+</div>
+
+<div class="row" *ngIf="departments.length > 0">
+    <div class="col-md-6">
+        <ul>
+            <li class="form-inline" *ngFor="#newDepartment of departments">
+                <button class="btn btn-danger" type="submit" (click)="delete(newDepartment._id)">Delete</button>
+                <input class="form-control" type="text" [(ngModel)]="newDepartment.title" value="{{newDepartment.title}}" (change)="update(newDepartment)">
+            </li>
+        </ul>
+    </div>
+</div>

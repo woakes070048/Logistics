@@ -1,14 +1,12 @@
+/// <reference path="./ModelBase.ts" />
 /// <reference path="../typings/tsd.d.ts" />
 
-import mongodb = require('mongodb');
+
 import mongoose = require('mongoose');
+import mongodb = require('mongodb');
 
 class EmployeeModel {
-    // private server: mongodb.Server;
-    // private client: mongodb.Db;
     
-    private db: mongoose.Connection;
-    private _mongoose: mongoose.Mongoose;
     private Employee: mongoose.Model<mongoose.Document>;
     private employeeSchema = new mongoose.Schema({
         username: 'string',
@@ -22,10 +20,6 @@ class EmployeeModel {
     });
 
     constructor() {
-        
-        this._mongoose = mongoose.connect('mongodb://localhost/logistics');
-        this.db = this._mongoose.connection;
-        this.db.on('error', console.error.bind(console, 'connection error:'));
         this.Employee = mongoose.model('employees', this.employeeSchema);
     }
 
@@ -42,21 +36,21 @@ class EmployeeModel {
             callback(null, docs);
         });
     }
-    
+
     public Get = (username: string, callback: (err?: Error, doc?: mongodb.Collection) => void) => {
         this.Employee.findOne({username: username}, (err: Error, docs: any) => {
             if(err) callback(err);
             callback(null, docs);
         });
     }
-    
+
     public Update = (username: string, employee: any, callback: (err?: Error, success?: boolean) => void) => {
         this.Employee.update(employee, (err: Error, result: any) => {
             if(err) callback(err);
             callback(null, true);
         });
     }
-    
+
     public Create = (employee: any, callback: (err? :Error, doc?: any) => void) => {
 
         let newEmployee = new this.Employee(employee);
@@ -65,14 +59,14 @@ class EmployeeModel {
             callback(null, res);
         });
     }
-    
+
     public Delete = (id, callback: (err?: Error, success?: boolean) => void) => {
         this.Employee.remove({_id: new mongodb.ObjectID(id)}, (err: Error) => {
             if(err) callback(err);
             callback(null, true);
         });
     }
-    
+
     private LogError = (err: Error) => {
         console.log(err);
     }

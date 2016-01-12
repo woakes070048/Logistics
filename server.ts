@@ -4,6 +4,9 @@ import express = require('express');
 import mongodb = require('mongodb');
 import bodyParser = require('body-parser');
 import methodOverride = require('method-override');
+
+import base = require('./app/ModelBase');
+
 let app = express();
 let port = process.env.PORT || 3000;
 
@@ -16,9 +19,11 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 
 // routes ==================================================
-
-import routes = require('./app/Routes');
-let r = new routes.Routes(app);
+let db = new base(); //db init
+import employeeRoutes = require('./app/EmployeeRoutes');
+new employeeRoutes.EmployeeRoutes(app);
+import departmentRoutes = require('./app/DepartmentRoutes');
+new departmentRoutes.DepartmentRoutes(app);
 
 // start app ===============================================
 

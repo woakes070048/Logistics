@@ -35,6 +35,7 @@ module.exports = function (grunt) {
                 options: {
                     module: 'commonjs',
                     experimentalDecorators: true,
+                    declaration: false,
                     moduleResolution: "node"
                 },
                 src: ['server.ts','app/**/*.ts', "!node_modules/**/*.ts"]
@@ -68,7 +69,7 @@ module.exports = function (grunt) {
             all: {
                 src: ["node_modules/bootstrap/dist/css/bootstrap.css"],
                 dest: "public/styles.css"
-            },
+            }
         },
         
         concurrent: {

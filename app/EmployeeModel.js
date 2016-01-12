@@ -1,5 +1,5 @@
-var mongodb = require('mongodb');
 var mongoose = require('mongoose');
+var mongodb = require('mongodb');
 var EmployeeModel = (function () {
     function EmployeeModel() {
         var _this = this;
@@ -59,9 +59,6 @@ var EmployeeModel = (function () {
         this.LogError = function (err) {
             console.log(err);
         };
-        this._mongoose = mongoose.connect('mongodb://localhost/logistics');
-        this.db = this._mongoose.connection;
-        this.db.on('error', console.error.bind(console, 'connection error:'));
         this.Employee = mongoose.model('employees', this.employeeSchema);
     }
     return EmployeeModel;

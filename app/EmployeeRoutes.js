@@ -1,7 +1,7 @@
 var employeeModel = require('./EmployeeModel');
 var request = require('request');
-var Routes = (function () {
-    function Routes(app) {
+var EmployeeRoutes = (function () {
+    function EmployeeRoutes(app) {
         var _this = this;
         this.app = app;
         this.employee = new employeeModel();
@@ -58,7 +58,7 @@ var Routes = (function () {
             });
         });
     }
-    return Routes;
+    return EmployeeRoutes;
 })();
-exports.Routes = Routes;
-//# sourceMappingURL=Routes.js.map
+exports.EmployeeRoutes = EmployeeRoutes;
+//# sourceMappingURL=EmployeeRoutes.js.map

@@ -2,10 +2,11 @@
 
 import express = require('express');
 import employeeModel = require('./EmployeeModel');
+import departmentModel = require('./DepartmentModel');
 import mongodb = require('mongodb');
 let request = require('request');
 
-export class Routes {
+export class EmployeeRoutes {
     
     private employee = new employeeModel();
     private config = require('../private/config.json');

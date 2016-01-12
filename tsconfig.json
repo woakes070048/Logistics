@@ -24,7 +24,7 @@
         "tsc.ts",
         "diagnosticInformationMap.generated.ts"
     ],
-    "fileGlobs": [
-        "!./node_modules/**"
+    "fileBlobs": [
+        
     ]
 }
