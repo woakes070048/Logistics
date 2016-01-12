@@ -5,6 +5,7 @@ var EmployeeModel = (function () {
         var _this = this;
         this.employeeSchema = new mongoose.Schema({
             username: 'string',
+            department: 'string',
             firstname: 'string',
             lastname: 'string',
             address1: 'string',

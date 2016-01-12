@@ -1,11 +1,18 @@
 <form name="updateUserForm" id="updateUserForm" novalidate>
     <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <label for="">Username</label>
             <input type="text" class="form-control" *ngIf="!employee._id" (change)="checkUsernameExists(employee.username)" [(ngModel)]="employee.username">
             <span *ngIf="employee._id">{{employee.username}}</span>
             <span class="text-danger" *ngIf="usernameTaken">*Username is taken, try another.</span>
             <span class="text-danger" *ngIf="!employee._id && !usernameValid">*Required</span>
+        </div>
+        <div class="col-md-2">
+            <label for="">Department</label>
+            <select class="form-control" name="" id="" [(ngModel)]="employee.department">
+                <option style="display: none" value="">Select</option>
+                <option *ngFor="#department of departments" value="{{department._id}}">{{department.title}}</option>
+            </select>
         </div>
         <div class="col-md-4">
             <label for="">First Name</label>

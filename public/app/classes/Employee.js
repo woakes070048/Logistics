@@ -25,6 +25,7 @@ System.register(['angular2/http', '../classes/STATIC'], function(exports_1) {
                         var body = '&firstname=' + e.firstname +
                             '&lastname=' + e.lastname +
                             '&username=' + e.username +
+                            '&department=' + e.department +
                             '&address1=' + e.address1 +
                             '&address2=' + e.address2 +
                             '&city=' + e.city +
@@ -39,6 +40,7 @@ System.register(['angular2/http', '../classes/STATIC'], function(exports_1) {
                             '&firstname=' + e.firstname +
                             '&lastname=' + e.lastname +
                             '&username=' + e.username +
+                            '&department=' + e.department +
                             '&address1=' + e.address1 +
                             '&address2=' + e.address2 +
                             '&city=' + e.city +

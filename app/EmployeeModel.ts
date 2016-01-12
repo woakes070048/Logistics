@@ -10,6 +10,7 @@ class EmployeeModel {
     private Employee: mongoose.Model<mongoose.Document>;
     private employeeSchema = new mongoose.Schema({
         username: 'string',
+        department: 'string',
         firstname: 'string',
         lastname: 'string',
         address1: 'string',
@@ -52,7 +53,6 @@ class EmployeeModel {
     }
 
     public Create = (employee: any, callback: (err? :Error, doc?: any) => void) => {
-
         let newEmployee = new this.Employee(employee);
         newEmployee.save((err: Error, res: any) => {
             if(err) callback(err);

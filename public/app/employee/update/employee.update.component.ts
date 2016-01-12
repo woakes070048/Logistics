@@ -5,6 +5,7 @@ import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams, L
 import {STATIC} from '../../classes/Static';
 import {IEmployee} from '../../interfaces/IEmployee';
 import {Employee} from '../../classes/Employee';
+import {Departments} from '../../classes/departments';
 
 @Component({
     selector: 'update-employee',
@@ -17,9 +18,11 @@ import {Employee} from '../../classes/Employee';
 export class EmployeeUpdateComponent implements OnInit {
 
     private employee: IEmployee = {firstname: '', lastname: '', username: ''};
-    private stateList: any;
+    private stateList: any = [];
     private username: string;
     private employeeService: Employee;
+    private departmentService: Departments;
+    private departments: any = [];
     public firstnameValid = true;
     public lastnameValid = true;
 
@@ -68,6 +71,10 @@ export class EmployeeUpdateComponent implements OnInit {
         this.employee = data;
     }
 
+    getDepartmentsCallback = (data) => {
+        this.departments = data;
+    }
+
     errorCallback = (err) => {
         console.log(err);
     }
@@ -82,6 +89,12 @@ export class EmployeeUpdateComponent implements OnInit {
         
         this.http.get('/api/v1/States').subscribe(
             (data) => this.statelistCallback(data.json()),
+            (err) => this.errorCallback(err)
+        );
+        
+        this.departmentService = new Departments(this.http);
+        this.departmentService.list().subscribe(
+            (data) => this.getDepartmentsCallback(data.json()),
             (err) => this.errorCallback(err)
         );
 

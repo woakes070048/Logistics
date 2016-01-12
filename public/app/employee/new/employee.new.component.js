@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../classes/Employee'], function(exports_1) {
+System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../classes/Employee', '../../classes/Departments'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
     var __param = (this && this.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
-    var core_1, http_1, router_1, Employee_1;
+    var core_1, http_1, router_1, Employee_1, Departments_1;
     var EmployeeNewComponent;
     return {
         setters:[
@@ -23,6 +23,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
             },
             function (Employee_1_1) {
                 Employee_1 = Employee_1_1;
+            },
+            function (Departments_1_1) {
+                Departments_1 = Departments_1_1;
             }],
         execute: function() {
             EmployeeNewComponent = (function () {
@@ -31,6 +34,8 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.http = http;
                     this.router = router;
                     this.employee = { firstname: '', lastname: '', username: '' };
+                    this.stateList = [];
+                    this.departments = [];
                     this.usernameTaken = false;
                     this.firstnameValid = true;
                     this.lastnameValid = true;
@@ -77,6 +82,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.statelistCallback = function (data) {
                         _this.stateList = data;
                     };
+                    this.getDepartmentsCallback = function (data) {
+                        _this.departments = data;
+                    };
                     this.errorCallback = function (e) {
                         console.log(e);
                     };
@@ -85,6 +93,8 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     var _this = this;
                     this.employeeService = new Employee_1.Employee(this.http);
                     this.http.get('/api/v1/States').subscribe(function (data) { return _this.statelistCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
+                    this.departmentService = new Departments_1.Departments(this.http);
+                    this.departmentService.list().subscribe(function (data) { return _this.getDepartmentsCallback(data.json()); }, function (err) { return _this.errorCallback(err); });
                 };
                 EmployeeNewComponent = __decorate([
                     core_1.Component({
