@@ -1,5 +1,5 @@
-/// <reference path="./ModelBase.ts" />
-/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="./../ModelBase.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 
 
 import mongoose = require('mongoose');

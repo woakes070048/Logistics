@@ -20,9 +20,9 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 
 // routes ==================================================
 let db = new base(); //db init
-import employeeRoutes = require('./app/EmployeeRoutes');
+import employeeRoutes = require('./app/Employee/EmployeeRoutes');
 new employeeRoutes.EmployeeRoutes(app);
-import departmentRoutes = require('./app/DepartmentRoutes');
+import departmentRoutes = require('./app/Department/DepartmentRoutes');
 new departmentRoutes.DepartmentRoutes(app);
 
 // start app ===============================================

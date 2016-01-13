@@ -1,10 +1,9 @@
-/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 
 import express = require('express');
-import employeeModel = require('./EmployeeModel');
 import departmentModel = require('./DepartmentModel');
 import mongodb = require('mongodb');
-import base = require('./ModelBase');
+import base = require('../ModelBase');
 let request = require('request');
 
 export class DepartmentRoutes {

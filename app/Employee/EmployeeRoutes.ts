@@ -1,8 +1,8 @@
-/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 
 import express = require('express');
 import employeeModel = require('./EmployeeModel');
-import departmentModel = require('./DepartmentModel');
+import departmentModel = require('../Department/DepartmentModel');
 import mongodb = require('mongodb');
 let request = require('request');
 

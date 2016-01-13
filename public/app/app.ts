@@ -3,7 +3,6 @@ import {Component, provide, Inject} from 'angular2/core';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS,LocationStrategy, HashLocationStrategy} from 'angular2/router';
         
-import {LoginComponent} from './login/login.component';
 import {aboutComponent} from './about/about.component';
 import {defaultComponent} from './default/default.component';
 import {EmployeeListComponent} from './employee/list/employee.list.component';
@@ -18,7 +17,6 @@ import {DepartmentsComponent} from './admin/departments/departments.component';
 })
 
 @RouteConfig([
-    { path: '/Login', component: LoginComponent, as: 'Login'},
     { path: '/', component: defaultComponent, as: 'Home'},
     { path: '/About', component: aboutComponent, as: 'About' },
     { path: '/Employees', component: EmployeeListComponent, as: 'Employees'},
