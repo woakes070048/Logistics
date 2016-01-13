@@ -5,7 +5,7 @@ var EmployeeRoutes = (function () {
         var _this = this;
         this.app = app;
         this.employee = new employeeModel();
-        this.config = require('../private/config.json');
+        this.config = require('../../private/config.json');
         app.get('/api/v1/Employees', function (req, res) {
             _this.employee.All(function (err, data) {
                 if (err) {

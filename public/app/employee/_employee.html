@@ -10,7 +10,6 @@
         <div class="col-md-2">
             <label for="">Department</label>
             <select class="form-control" name="" id="" [(ngModel)]="employee.department">
-                <option style="display: none" value="">Select</option>
                 <option *ngFor="#department of departments" value="{{department._id}}">{{department.title}}</option>
             </select>
         </div>
@@ -43,7 +42,6 @@
         <div class="col-md-4">
             <label for="">State</label>
             <select class="form-control" name="states" id="states" [(ngModel)]="employee.state">
-                <option style="display: none" value="">Select</option>
                 <option *ngFor="#state of stateList" value="{{state.abbreviation}}">{{state.name}}</option>
             </select>
         </div>
