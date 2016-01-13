@@ -1,4 +1,4 @@
-System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 'angular2/router', './about/about.component', './default/default.component', './employee/list/employee.list.component', './employee/update/employee.update.component', './employee/new/employee.new.component', './admin/departments/departments.component'], function(exports_1) {
+System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 'angular2/router', './about/about.component', './default/default.component', './employee/list/employee.list.component', './employee/update/employee.update.component', './employee/new/employee.new.component', './admin/departments/departments.component', './item/list/item.list.component', './item/new/item.new.component', './item/update/item.update.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
     var __param = (this && this.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
-    var browser_1, core_1, http_1, router_1, about_component_1, default_component_1, employee_list_component_1, employee_update_component_1, employee_new_component_1, departments_component_1;
+    var browser_1, core_1, http_1, router_1, about_component_1, default_component_1, employee_list_component_1, employee_update_component_1, employee_new_component_1, departments_component_1, item_list_component_1, item_new_component_1, item_update_component_1;
     var app;
     return {
         setters:[
@@ -41,6 +41,15 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
             },
             function (departments_component_1_1) {
                 departments_component_1 = departments_component_1_1;
+            },
+            function (item_list_component_1_1) {
+                item_list_component_1 = item_list_component_1_1;
+            },
+            function (item_new_component_1_1) {
+                item_new_component_1 = item_new_component_1_1;
+            },
+            function (item_update_component_1_1) {
+                item_update_component_1 = item_update_component_1_1;
             }],
         execute: function() {
             app = (function () {
@@ -60,7 +69,10 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
                         { path: '/Employees', component: employee_list_component_1.EmployeeListComponent, as: 'Employees' },
                         { path: '/Employee', component: employee_new_component_1.EmployeeNewComponent, as: 'NewEmployee' },
                         { path: '/Employee/:username/Update', component: employee_update_component_1.EmployeeUpdateComponent, as: 'Update Employee' },
-                        { path: '/Admin/Departments', component: departments_component_1.DepartmentsComponent, as: 'Admin_Departments' }
+                        { path: '/Admin/Departments', component: departments_component_1.DepartmentsComponent, as: 'Admin_Departments' },
+                        { path: '/Items', component: item_list_component_1.ItemListComponent, as: 'Item_List' },
+                        { path: '/Item', component: item_new_component_1.ItemNewComponent, as: 'Item_New' },
+                        { path: '/Item/:itemID', component: item_update_component_1.ItemUpdateComponent, as: 'Item_Update' }
                     ]),
                     __param(0, core_1.Inject(router_1.Router))
                 ], app);

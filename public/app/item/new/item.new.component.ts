@@ -10,7 +10,7 @@ import {Item} from '../../classes/Item';
     selector: 'new-item',
     directives: [],
     inputs: [],
-    templateUrl: './app/public/item/_item.html'
+    templateUrl: './app/item/_item.html'
 })
 
 export class ItemNewComponent implements OnInit {
@@ -29,7 +29,7 @@ export class ItemNewComponent implements OnInit {
 
     createCallback = (data) => {
     	if(data.success) {
-			this.router.parent.navigate(['/Items']);
+			this.router.parent.navigate(['/Item_List']);
     	}
     }
 

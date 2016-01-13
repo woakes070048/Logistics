@@ -9,7 +9,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
         return function (target, key) { decorator(target, key, paramIndex); }
     };
     var core_1, http_1, router_1, Item_1;
-    var ItemNewComponent;
+    var ItemUpdateComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -25,42 +25,52 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                 Item_1 = Item_1_1;
             }],
         execute: function() {
-            ItemNewComponent = (function () {
-                function ItemNewComponent(http, router) {
+            ItemUpdateComponent = (function () {
+                function ItemUpdateComponent(http, params, location, router) {
                     var _this = this;
                     this.http = http;
+                    this.params = params;
+                    this.location = location;
                     this.router = router;
-                    this.item = { name: '', description: '' };
-                    this.createCallback = function (data) {
+                    this.item = { name: '', description: '', cost: 0 };
+                    this.getItem = function () {
+                        _this.itemService.one(_this.itemID).subscribe(function (data) { return _this.getItemCallback(data.json()); }, function (err) { return _this.logError(err); });
+                    };
+                    this.save = function (item) {
+                        _this.itemService.update(item).subscribe(function (data) { return _this.saveCallback(data.json()); }, function (err) { return _this.logError(err); });
+                    };
+                    this.saveCallback = function (data) {
                         if (data.success) {
-                            _this.router.parent.navigate(['/Item_List']);
+                            _this.router.parent.navigate(['Item_List']);
                         }
+                    };
+                    this.getItemCallback = function (data) {
+                        _this.item = data;
                     };
                     this.logError = function (err) {
                         console.log(err);
                     };
                 }
-                ItemNewComponent.prototype.save = function (item) {
-                    var _this = this;
-                    this.itemService.create(item).subscribe(function (data) { return _this.createCallback(data.json()); }, function (err) { return _this.logError(err); });
-                };
-                ItemNewComponent.prototype.ngOnInit = function () {
+                ItemUpdateComponent.prototype.ngOnInit = function () {
+                    this.itemID = this.params.get('itemID');
                     this.itemService = new Item_1.Item(this.http);
+                    this.getItem();
                 };
-                ItemNewComponent = __decorate([
+                ItemUpdateComponent = __decorate([
                     core_1.Component({
-                        selector: 'new-item',
-                        directives: [],
-                        inputs: [],
+                        selector: 'update-item',
+                        directives: [router_1.ROUTER_DIRECTIVES],
                         templateUrl: './app/item/_item.html'
                     }),
                     __param(0, core_1.Inject(http_1.Http)),
-                    __param(1, core_1.Inject(router_1.Router))
-                ], ItemNewComponent);
-                return ItemNewComponent;
+                    __param(1, core_1.Inject(router_1.RouteParams)),
+                    __param(2, core_1.Inject(router_1.Location)),
+                    __param(3, core_1.Inject(router_1.Router))
+                ], ItemUpdateComponent);
+                return ItemUpdateComponent;
             })();
-            exports_1("ItemNewComponent", ItemNewComponent);
+            exports_1("ItemUpdateComponent", ItemUpdateComponent);
         }
     }
 });
-//# sourceMappingURL=item.new.component.js.map
+//# sourceMappingURL=item.update.component.js.map

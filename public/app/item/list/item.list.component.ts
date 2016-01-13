@@ -18,6 +18,29 @@ export class ItemListComponent implements OnInit {
 	
 	constructor(@Inject(Http) private http: Http) {}
 
+	
+
+	delete = (evt, itemID) => {
+		evt.preventDefault();
+		this.itemService.deleteItem(itemID).subscribe(
+			data => this.deleteCallback(data.json()),
+			err => this.logError(err)
+		);
+	}
+
+	deleteCallback = (data) => {
+		if(data.success) {
+			this.getItems();
+		}
+	}
+
+	getItems = () => {
+		this.itemService.all().subscribe(
+			data => this.getItemsCallback(data.json()),
+			err => this.logError(err)
+		);
+	}
+
 	getItemsCallback = (data) => {
 		this.items = data;
 	}
@@ -28,9 +51,6 @@ export class ItemListComponent implements OnInit {
 
 	ngOnInit() {
 		this.itemService = new Item(this.http);
-		this.itemService.all().subscribe(
-			data => this.getItemsCallback(data.json()),
-			err => this.logError(err)
-		);
+		this.getItems();
 	}
 }

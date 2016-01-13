@@ -14,6 +14,8 @@ var employeeRoutes = require('./app/Employee/EmployeeRoutes');
 new employeeRoutes.EmployeeRoutes(app);
 var departmentRoutes = require('./app/Department/DepartmentRoutes');
 new departmentRoutes.DepartmentRoutes(app);
+var itemsRoutes = require('./app/Item/ItemRoutes');
+new itemsRoutes.ItemRoutes(app);
 app.listen(port);
 console.log('Magic happens on port ' + port);
 exports = module.exports = app;

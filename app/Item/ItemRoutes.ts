@@ -16,14 +16,15 @@ export class ItemRoutes {
 			});
 		});
 
-		app.get('/api/v1/Item', (req: express.Request, res: express.Response) => { 
-			this.item.One(req.body.id, (err: Error, results: any) => { 
+		app.get('/api/v1/Item/:itemID', (req: express.Request, res: express.Response) => { 
+			this.item.One(req.params.itemID, (err: Error, results: any) => { 
 				if (err) res.send({ success: false});
 				res.send(results);
 			});
 		});
 
 		app.post('/api/v1/Item/New', (req: express.Request, res: express.Response) => { 
+			console.log(req.body);
 			this.item.CreateItem(req.body, (err: Error, results: boolean) => { 
 				res.send({ success: results});
 			});
@@ -36,7 +37,8 @@ export class ItemRoutes {
 		});
 
 		app.post('/api/v1/Item/Delete', (req: express.Request, res: express.Response) => { 
-			this.item.Delete(req.body.id, (err: Error, results: boolean) => { 
+			console.log(req.body);
+			this.item.Delete(req.body._id, (err: Error, results: boolean) => { 
 				res.send({ success: results});
 			});
 		});

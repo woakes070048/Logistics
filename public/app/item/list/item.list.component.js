@@ -26,6 +26,18 @@ System.register(['angular2/core', 'angular2/http', '../../classes/Item'], functi
                 function ItemListComponent(http) {
                     var _this = this;
                     this.http = http;
+                    this.delete = function (evt, itemID) {
+                        evt.preventDefault();
+                        _this.itemService.deleteItem(itemID).subscribe(function (data) { return _this.deleteCallback(data.json()); }, function (err) { return _this.logError(err); });
+                    };
+                    this.deleteCallback = function (data) {
+                        if (data.success) {
+                            _this.getItems();
+                        }
+                    };
+                    this.getItems = function () {
+                        _this.itemService.all().subscribe(function (data) { return _this.getItemsCallback(data.json()); }, function (err) { return _this.logError(err); });
+                    };
                     this.getItemsCallback = function (data) {
                         _this.items = data;
                     };
@@ -34,9 +46,8 @@ System.register(['angular2/core', 'angular2/http', '../../classes/Item'], functi
                     };
                 }
                 ItemListComponent.prototype.ngOnInit = function () {
-                    var _this = this;
                     this.itemService = new Item_1.Item(this.http);
-                    this.itemService.all().subscribe(function (data) { return _this.getItemsCallback(data.json()); }, function (err) { return _this.logError(err); });
+                    this.getItems();
                 };
                 ItemListComponent = __decorate([
                     core_1.Component({

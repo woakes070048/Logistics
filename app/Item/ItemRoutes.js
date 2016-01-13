@@ -10,14 +10,15 @@ var ItemRoutes = (function () {
                 res.send(results);
             });
         });
-        app.get('/api/v1/Item', function (req, res) {
-            _this.item.One(req.body.id, function (err, results) {
+        app.get('/api/v1/Item/:itemID', function (req, res) {
+            _this.item.One(req.params.itemID, function (err, results) {
                 if (err)
                     res.send({ success: false });
                 res.send(results);
             });
         });
         app.post('/api/v1/Item/New', function (req, res) {
+            console.log(req.body);
             _this.item.CreateItem(req.body, function (err, results) {
                 res.send({ success: results });
             });
@@ -28,7 +29,8 @@ var ItemRoutes = (function () {
             });
         });
         app.post('/api/v1/Item/Delete', function (req, res) {
-            _this.item.Delete(req.body.id, function (err, results) {
+            console.log(req.body);
+            _this.item.Delete(req.body._id, function (err, results) {
                 res.send({ success: results });
             });
         });

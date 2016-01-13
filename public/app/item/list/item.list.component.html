@@ -7,9 +7,9 @@
 	<div class="col-md-12">
 		<ul>
 			<li *ngFor="#item of items">
-				{{item.name}} <br />
-				{{item.description}} <br />
-				{{item.cost}}
+				<a href="#" (click)="delete($event, item._id)">Delete</a>
+				{{item.name}} - {{item.description}} ${{item.cost}}
+				<a href="#/Item/{{item._id}}">Update</a>
 			</li>
 		</ul>
 	</div>

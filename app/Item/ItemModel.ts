@@ -9,10 +9,9 @@ class ItemModel {
 
 	private Item: mongoose.Model<mongoose.Document>;
     private itemSchema = new mongoose.Schema({
-        _id: 'string',
         name: 'string',
         description: 'string',
-        cost: 'description'
+        cost: 'string'
     });
 
     constructor() {

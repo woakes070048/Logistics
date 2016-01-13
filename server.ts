@@ -24,6 +24,8 @@ import employeeRoutes = require('./app/Employee/EmployeeRoutes');
 new employeeRoutes.EmployeeRoutes(app);
 import departmentRoutes = require('./app/Department/DepartmentRoutes');
 new departmentRoutes.DepartmentRoutes(app);
+import itemsRoutes = require('./app/Item/ItemRoutes');
+new itemsRoutes.ItemRoutes(app);
 
 // start app ===============================================
 

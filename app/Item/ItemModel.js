@@ -4,10 +4,9 @@ var ItemModel = (function () {
     function ItemModel() {
         var _this = this;
         this.itemSchema = new mongoose.Schema({
-            _id: 'string',
             name: 'string',
             description: 'string',
-            cost: 'description'
+            cost: 'string'
         });
         this.All = function (callback) {
             _this.Item.find(function (err, results) {

@@ -1,19 +1,19 @@
-<div class="row form-control">
+<div class="row form-group">
 	<div class="col-md-4">
 		<label>Name</label>
-		<input type="text" [(ngModel)]="item.name">
+		<input class="form-control" type="text" [(ngModel)]="item.name">
 	</div>
 	<div class="col-md-4">
 		<label>Description</label>
-		<input type="text" [(ngModel)]="item.description">
+		<input class="form-control" type="text" [(ngModel)]="item.description">
 	</div>
 	<div class="col-md-4">
 		<label>cost</label>
-		<input type="numer" [(ngModel)]="item.cost">
+		<input class="form-control" type="numer" [(ngModel)]="item.cost">
 	</div>
 </div>
-<div class="row form-control">
+<div class="row form-group">
 	<div class="col-md-12">
-		<button type="submit" (click)="save(item)">Save</button>
+		<button class="btn btn-default" type="submit" (click)="save(item)">Save</button>
 	</div>
 </div>

@@ -26,7 +26,10 @@ export class EmployeeUpdateComponent implements OnInit {
     public firstnameValid = true;
     public lastnameValid = true;
 
-    constructor(@Inject(Http) private http: Http, @Inject(RouteParams) private params: RouteParams, @Inject(Location) private location: Location, @Inject(Router) private router: Router) {}
+    constructor(@Inject(Http) private http: Http, 
+                @Inject(RouteParams) private params: RouteParams, 
+                @Inject(Location) private location: Location, 
+                @Inject(Router) private router: Router) {}
     
     save = (e: IEmployee) => {
         if(this.checkFormValid()) {
