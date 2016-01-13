@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-12">
+		<h2>Items</h2>
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-md-12">
+		<ul>
+			<li *ngFor="#item of items">
+				{{item.name}} <br />
+				{{item.description}} <br />
+				{{item.cost}}
+			</li>
+		</ul>
+	</div>
+</div>
