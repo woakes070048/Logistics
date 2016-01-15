@@ -79,7 +79,9 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/http', 
                 return app;
             })();
             exports_1("app", app);
-            browser_1.bootstrap(app, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })]);
+            browser_1.bootstrap(app, [router_1.ROUTER_PROVIDERS,
+                http_1.HTTP_PROVIDERS,
+                core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })]);
         }
     }
 });

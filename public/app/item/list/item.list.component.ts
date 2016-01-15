@@ -18,8 +18,6 @@ export class ItemListComponent implements OnInit {
 	
 	constructor(@Inject(Http) private http: Http) {}
 
-	
-
 	delete = (evt, itemID) => {
 		evt.preventDefault();
 		this.itemService.deleteItem(itemID).subscribe(

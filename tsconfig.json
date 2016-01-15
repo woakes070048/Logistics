@@ -25,6 +25,7 @@
         "diagnosticInformationMap.generated.ts"
     ],
     "fileBlobs": [
-        
+        "./app/**/*.ts",
+        "./public/app/**/*.ts"
     ]
 }
