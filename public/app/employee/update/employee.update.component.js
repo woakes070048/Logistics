@@ -48,7 +48,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     };
                     this.updateEmployeeCallback = function (data) {
                         if (data.success) {
-                            _this.router.parent.navigate(['/Employees']);
+                            _this.router.navigate(['Employees']);
                         }
                     };
                     this.checkInputValid = function (input, value) {

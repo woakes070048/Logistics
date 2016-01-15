@@ -38,7 +38,7 @@ export class ItemUpdateComponent implements OnInit {
 
 	saveCallback = (data) => {
 		if(data.success) {
-			this.router.parent.navigate(['Item_List']);
+			this.router.navigate(['Item_List']);
 		}
 	}
 

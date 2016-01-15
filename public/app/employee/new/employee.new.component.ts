@@ -77,7 +77,8 @@ export class EmployeeNewComponent implements OnInit {
 
     newEmployeeDataCallback = (data) => {
         if (data.success) {
-            this.router.parent.navigate(['/Employees']);
+            this.router.navigate(['Employees']);
+            //this.router.parent.navigate(['/Employees']);
         }
     }
     

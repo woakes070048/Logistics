@@ -41,7 +41,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     };
                     this.saveCallback = function (data) {
                         if (data.success) {
-                            _this.router.parent.navigate(['Item_List']);
+                            _this.router.navigate(['Item_List']);
                         }
                     };
                     this.getItemCallback = function (data) {

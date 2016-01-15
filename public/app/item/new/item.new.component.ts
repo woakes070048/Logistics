@@ -29,7 +29,7 @@ export class ItemNewComponent implements OnInit {
 
     createCallback = (data) => {
     	if(data.success) {
-			this.router.parent.navigate(['/Item_List']);
+			this.router.navigate(['Item_List']);
     	}
     }
 

@@ -46,7 +46,7 @@ export class EmployeeUpdateComponent implements OnInit {
             //show success
             //route back to employees list
             //this.location.go('/Employees');
-            this.router.parent.navigate(['/Employees']);
+            this.router.navigate(['Employees']);
         }
     }
 
