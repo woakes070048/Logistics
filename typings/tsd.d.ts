@@ -13,3 +13,4 @@
 /// <reference path="angular2/router.d.ts" />
 /// <reference path="form-data/form-data.d.ts" />
 /// <reference path="mongoose/mongoose.d.ts" />
+/// <reference path="restify/restify.d.ts" />

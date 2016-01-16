@@ -16,28 +16,23 @@ export class Item implements OnInit {
 	}
 
 	create = (item: IItem) => {
-		let body = 'name=' + item.name +
-			'&description=' + item.description +
-			'&cost=' + item.cost;
+		let body = JSON.stringify(item);
 		let headers: Headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		headers.append('Content-Type', 'application/json');
 		return this.http.post('/api/v1/Item/New', body, { headers: headers});	
 	}
 
 	update = (item: IItem) => {
-		let body = '_id=' + item._id +
-			'&name=' + item.name +
-			'&description=' + item.description +
-			'&cost=' + item.cost;
+		let body = JSON.stringify(item);
 		let headers: Headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		headers.append('Content-Type', 'application/json');
 		return this.http.post('/api/v1/Item/Update', body, { headers: headers});
 	}
 
-	deleteItem = (itemID: string) => {
-		let body = '_id=' + itemID;
+	deleteItem = (id: string) => {
+		let body = JSON.stringify({ _id: id });
 		let headers: Headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		headers.append('Content-Type', 'application/json');
 		return this.http.post('/api/v1/Item/Delete', body, { headers: headers});
 	}
 

@@ -23,8 +23,7 @@ var EmployeeRoutes = (function () {
             });
         });
         app.post('/api/v1/Employee/:username/Update', function (req, res) {
-            var username = req.params.username;
-            _this.employee.Update(username, req.body, function (err, success) {
+            _this.employee.Update(req.body, function (err, success) {
                 if (err)
                     res.send({ err: err });
                 res.send({ success: success });
@@ -54,7 +53,7 @@ var EmployeeRoutes = (function () {
         app.get('/api/v1/States', function (req, res) {
             var url = _this.config.openStates.baseUrl + '/metadata/?apikey=' + _this.config.openStates.apiKey;
             request(url, function (err, response, html) {
-                res.send(html);
+                res.send(response);
             });
         });
     }

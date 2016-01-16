@@ -35,7 +35,6 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.router = router;
                     this.employee = { firstname: '', lastname: '', username: '' };
                     this.stateList = [];
-                    this.departments = [];
                     this.usernameTaken = false;
                     this.firstnameValid = true;
                     this.lastnameValid = true;
@@ -66,7 +65,6 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                         _this.checkInputValid('username', _this.employee.username);
                     };
                     this.checkUsernameCallback = function (data) {
-                        console.log(data);
                         if (data.exists) {
                             _this.usernameTaken = true;
                         }
@@ -80,7 +78,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                         }
                     };
                     this.statelistCallback = function (data) {
-                        _this.stateList = data;
+                        _this.stateList = JSON.parse(data.body);
                     };
                     this.getDepartmentsCallback = function (data) {
                         _this.departments = data;

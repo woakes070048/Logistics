@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-4">
             <label for="">State</label>
-            <select class="form-control" name="states" id="states" [(ngModel)]="employee.state">
+            <select class="form-control" [(ngModel)]="employee.state">
                 <option *ngFor="#state of stateList" value="{{state.abbreviation}}">{{state.name}}</option>
             </select>
         </div>

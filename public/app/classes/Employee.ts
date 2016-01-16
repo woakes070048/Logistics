@@ -18,50 +18,31 @@ export class Employee {
     }
 
     create = (e: IEmployee) => {
-        let body =  '&firstname=' + e.firstname +
-                    '&lastname=' + e.lastname +
-                    '&username=' + e.username +
-                    '&department=' + e.department +
-                    '&address1=' + e.address1 +
-                    '&address2=' + e.address2 +
-                    '&city=' + e.city +
-                    '&state=' + e.state +
-                    '&zip=' + e.zip;
+        let body = JSON.stringify(e);
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
+        headers.append('Content-Type', 'application/json');
         return this.http.post('/api/v1/Employee',  body, { headers: headers });
     }
 
     update = (e: IEmployee) => {
 
-        let body =  '_id=' + e._id +
-                    '&firstname=' + e.firstname +
-                    '&lastname=' + e.lastname +
-                    '&username=' + e.username +
-                    '&department=' + e.department +
-                    '&address1=' + e.address1 +
-                    '&address2=' + e.address2 +
-                    '&city=' + e.city +
-                    '&state=' + e.state +
-                    '&zip=' + e.zip;
+        let body =  JSON.stringify(e);
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
+        headers.append('Content-Type', 'application/json');
         return this.http.post('/api/v1/Employee/' + this.username + '/Update', body, { headers: headers });
     }
 
     delete = (id: string) => {
-        let body = '_id=' + id;
+        let body = JSON.stringify({ _id: id});
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
         return this.http.post('/api/v1/Employee/Delete', body, {headers: headers});
     }
 
     checkUsernameExists = (username) => {
-        let body = 'username=' + username;
+        let body = JSON.stringify({username: username});
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
         return this.http.post('/api/v1/Employee/Exists', body, {headers: headers});
     }
 }

@@ -18,26 +18,21 @@ System.register(['angular2/http'], function(exports_1) {
                         return _this.http.get('/api/v1/Item/' + id);
                     };
                     this.create = function (item) {
-                        var body = 'name=' + item.name +
-                            '&description=' + item.description +
-                            '&cost=' + item.cost;
+                        var body = JSON.stringify(item);
                         var headers = new http_1.Headers();
-                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        headers.append('Content-Type', 'application/json');
                         return _this.http.post('/api/v1/Item/New', body, { headers: headers });
                     };
                     this.update = function (item) {
-                        var body = '_id=' + item._id +
-                            '&name=' + item.name +
-                            '&description=' + item.description +
-                            '&cost=' + item.cost;
+                        var body = JSON.stringify(item);
                         var headers = new http_1.Headers();
-                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        headers.append('Content-Type', 'application/json');
                         return _this.http.post('/api/v1/Item/Update', body, { headers: headers });
                     };
-                    this.deleteItem = function (itemID) {
-                        var body = '_id=' + itemID;
+                    this.deleteItem = function (id) {
+                        var body = JSON.stringify({ _id: id });
                         var headers = new http_1.Headers();
-                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        headers.append('Content-Type', 'application/json');
                         return _this.http.post('/api/v1/Item/Delete', body, { headers: headers });
                     };
                 }

@@ -1,34 +1,45 @@
 /// <reference path="./typings/tsd.d.ts" />
 
-import express = require('express');
 import mongodb = require('mongodb');
-import bodyParser = require('body-parser');
-import methodOverride = require('method-override');
+import restify = require('restify');
 
-import base = require('./app/ModelBase');
+let app = restify.createServer({
+	name: 'logistics',
+	version: '0.0.1'
+});
 
-let app = express();
+app.pre(restify.pre.sanitizePath());
+
+app.use(restify.acceptParser(app.acceptable));
+app.use(restify.queryParser());
+app.use(restify.bodyParser());
+
 let port = process.env.PORT || 3000;
 
-// get all data/stuff of the body (POST) parameters
-app.use(bodyParser.json({ limit: '50mb' })); // parse application/json 
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
-app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
-
-app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+import base = require('./app/ModelBase');
+let db = new base(); //db init
 
 // routes ==================================================
-let db = new base(); //db init
+
 import employeeRoutes = require('./app/Employee/EmployeeRoutes');
 new employeeRoutes.EmployeeRoutes(app);
+
 import departmentRoutes = require('./app/Department/DepartmentRoutes');
 new departmentRoutes.DepartmentRoutes(app);
+
 import itemsRoutes = require('./app/Item/ItemRoutes');
 new itemsRoutes.ItemRoutes(app);
 
+app.get(/\/?.*/, restify.serveStatic({
+	directory: __dirname + '/public',
+	default: 'index.html',
+}));
+
+
 // start app ===============================================
 
-app.listen(port);										// startup our app at http://localhost:8080
-console.log('Magic happens on port ' + port); 			// shoutout to the user
+app.listen(port, () => {
+	console.log('Magic happens on port ' + port);	
+});										
+
 exports = module.exports = app; 

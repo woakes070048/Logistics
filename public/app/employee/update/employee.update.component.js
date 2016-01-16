@@ -37,7 +37,6 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                     this.router = router;
                     this.employee = { firstname: '', lastname: '', username: '' };
                     this.stateList = [];
-                    this.departments = [];
                     this.firstnameValid = true;
                     this.lastnameValid = true;
                     this.save = function (e) {
@@ -65,7 +64,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', '../../cla
                         return _this.firstnameValid && _this.lastnameValid;
                     };
                     this.statelistCallback = function (data) {
-                        _this.stateList = data;
+                        _this.stateList = JSON.parse(data.body);
                     };
                     this.getEmployeeCallback = function (data) {
                         _this.employee = data;

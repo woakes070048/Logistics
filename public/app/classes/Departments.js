@@ -15,21 +15,21 @@ System.register(['angular2/http'], function(exports_1) {
                         return _this.http.get('/api/v1/Departments');
                     };
                     this.new = function (department) {
-                        var body = 'title=' + department.title;
+                        var body = JSON.stringify(department);
                         var headers = new http_1.Headers();
-                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        headers.append('Content-Type', 'application/json');
                         return _this.http.post('/api/v1/Department/New', body, { headers: headers });
                     };
                     this.update = function (department) {
-                        var body = '_id=' + department._id + '&title=' + department.title;
+                        var body = JSON.stringify(department);
                         var headers = new http_1.Headers();
-                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        headers.append('Content-Type', 'application/json');
                         return _this.http.post('/api/v1/Department/Update', body, { headers: headers });
                     };
                     this.delete = function (id) {
-                        var body = '_id=' + id;
+                        var body = JSON.stringify({ _id: id });
                         var headers = new http_1.Headers();
-                        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                        headers.append('Content-Type', 'application/json');
                         return _this.http.post('/api/v1/Department/Delete', body, { headers: headers });
                     };
                 }

@@ -35,7 +35,7 @@ var EmployeeModel = (function () {
                 callback(null, docs);
             });
         };
-        this.Update = function (username, employee, callback) {
+        this.Update = function (employee, callback) {
             _this.Employee.update(employee, function (err, result) {
                 if (err)
                     callback(err);

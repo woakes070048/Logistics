@@ -12,25 +12,25 @@ export class Departments {
 	}
     
     new = (department: IDepartment) => {
-        let body = 'title=' + department.title;
+        let body = JSON.stringify(department);
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
         
         return this.http.post('/api/v1/Department/New', body, {headers: headers});
     } 
     
     update = (department: IDepartment) => {
-        let body = '_id=' + department._id + '&title=' + department.title;
+        let body = JSON.stringify(department);
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
         
         return this.http.post('/api/v1/Department/Update', body, {headers: headers});
     }
     
     delete = (id: string) => {
-        let body = '_id=' + id
+        let body = JSON.stringify({ _id: id });
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
         
         return this.http.post('/api/v1/Department/Delete', body, {headers: headers});
     }

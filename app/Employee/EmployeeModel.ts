@@ -45,7 +45,7 @@ class EmployeeModel {
         });
     }
 
-    public Update = (username: string, employee: any, callback: (err?: Error, success?: boolean) => void) => {
+    public Update = (employee: any, callback: (err?: Error, success?: boolean) => void) => {
         this.Employee.update(employee, (err: Error, result: any) => {
             if(err) callback(err);
             callback(null, true);

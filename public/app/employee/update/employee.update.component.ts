@@ -18,11 +18,11 @@ import {Departments} from '../../classes/departments';
 export class EmployeeUpdateComponent implements OnInit {
 
     private employee: IEmployee = {firstname: '', lastname: '', username: ''};
-    private stateList: any = [];
+    private stateList: any[] = [];
     private username: string;
     private employeeService: Employee;
     private departmentService: Departments;
-    private departments: any = [];
+    private departments;
     public firstnameValid = true;
     public lastnameValid = true;
 
@@ -67,7 +67,7 @@ export class EmployeeUpdateComponent implements OnInit {
     }
 
     statelistCallback = (data) => {
-        this.stateList = data;
+        this.stateList = JSON.parse(data.body);
     }
 
     getEmployeeCallback = (data) => {

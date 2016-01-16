@@ -18,10 +18,10 @@ import {Departments} from '../../classes/Departments';
 export class EmployeeNewComponent implements OnInit {
 
     private employee: IEmployee = { firstname: '', lastname: '', username: '' };
+    private stateList: any[] = [];
     private employeeService: Employee;
     private departmentService: Departments;
-    private stateList: any = [];
-    private departments: any = [];
+    private departments: any;
     public usernameTaken = false;
     public firstnameValid = true;
     public lastnameValid = true;
@@ -67,7 +67,6 @@ export class EmployeeNewComponent implements OnInit {
     }
 
     checkUsernameCallback = (data) => {
-        console.log(data);
         if (data.exists) {
             this.usernameTaken = true;
         } else {
@@ -83,7 +82,7 @@ export class EmployeeNewComponent implements OnInit {
     }
     
     statelistCallback = (data) => {
-        this.stateList = data;
+        this.stateList = JSON.parse(data.body);
     }
 
     getDepartmentsCallback = (data) => {
@@ -97,14 +96,14 @@ export class EmployeeNewComponent implements OnInit {
     ngOnInit() {
         this.employeeService = new Employee(this.http);
         this.http.get('/api/v1/States').subscribe(
-            (data) => this.statelistCallback(data.json()),
-            (err) => this.errorCallback(err)
+            data => this.statelistCallback(data.json()),
+            err => this.errorCallback(err)
         );
         
         this.departmentService = new Departments(this.http);
         this.departmentService.list().subscribe(
-            (data) => this.getDepartmentsCallback(data.json()),
-            (err) => this.errorCallback(err)
+            data => this.getDepartmentsCallback(data.json()),
+            err => this.errorCallback(err)
         );
         
     }

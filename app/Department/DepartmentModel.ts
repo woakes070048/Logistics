@@ -47,6 +47,7 @@ class DepartmentModel {
     }
     
     updateDepartment = (department, callback: (err?: Error, result?: boolean) => void) => {
+
         this.Department.update(department, (err: Error, result: any) => {
             if(err) {
                 this.logError(err);
